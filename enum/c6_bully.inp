@@ -1,0 +1,21 @@
+TITLE:
+6-Class
+DATA:
+FILE = "C:/Users/Dina Arch/Box/IES_IMMERSE/Training Materials/lca_enum/enum/bully.dat";
+ 
+VARIABLE:
+NAMES = report_dis report_race report_sex counselors_fte psych_fte law_fte; 
+ MISSING=.;
+ categorical = report_dis-law_fte; 
+usevar = report_dis-law_fte;
+classes = c(6); 
+ANALYSIS:
+estimator = mlr; 
+    type = mixture;
+    starts = 200 100; 
+    processors = 10;
+OUTPUT:
+sampstat residual tech11 tech14;
+PLOT:
+type = plot3; 
+    series = report_dis-law_fte(*);

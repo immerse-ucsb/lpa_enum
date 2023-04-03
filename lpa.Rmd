@@ -1,0 +1,408 @@
+---
+title: "Latent Profile Analaysis"
+subtitle: 'Labs created by Adam Garber and Dina Arch'
+author: "YOUR NAME HERE"
+date: "Updated: `r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    theme: flatly
+editor_options: 
+  markdown: 
+    wrap: sentence 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, tidy = TRUE)
+```
+
+`University of California, Santa Barbara`
+
+------------------------------------------------------------------------
+
+Load packages
+
+```{r, cache = FALSE}
+
+library(naniar)
+library(tidyverse)
+library(haven)
+library(glue)
+library(MplusAutomation)
+library(here)
+library(janitor)
+library(gt)
+library(tidyLPA)
+library(pisaUSA15)
+library(cowplot)
+library(filesstrings)
+here::i_am("lpa.Rmd")
+```
+
+------------------------------------------------------------------------
+
+## Example: PISA Student Data
+
+1.  The first example closely follows the vignette used to demonstrate the [tidyLPA](https://data-edu.github.io/tidyLPA/articles/Introduction_to_tidyLPA.html) package (Rosenberg, 2019).
+
+-   This model utilizes the `PISA` data collected in the U.S. in 2015. To learn more about this data [see here](http://www.oecd.org/pisa/data/).
+-   To access the 2015 US `PISA` data & documentation in R use the following code:
+
+```{r, eval = FALSE}
+devtools::install_github("jrosen48/pisaUSA15")
+library(pisaUSA15)
+```
+
+------------------------------------------------------------------------
+
+Latent Profile Models:
+
+-   `model 1` Class-invariant / Diagonal: Equal variances, and covariances fixed to 0
+-   `model 2` Class-varying / Diagonal: Free variances and covariances fixed to 0
+-   `model 3` Class-invariant / Non-Diagonal: Equal variances and equal covariances
+-   `model 4` Free variances, and equal covariances
+-   `model 5` Equal variances, and free covariances
+-   `model 6` Class Varying / Non-Diagonal: Free variances and free covariances
+
+------------------------------------------------------------------------
+
+## Prepare Data
+
+```{r, eval=TRUE}
+
+pisa <- pisaUSA15[1:500,] %>%
+  dplyr::select(broad_interest, enjoyment, instrumental_mot, self_efficacy)
+
+```
+
+------------------------------------------------------------------------
+
+## Descriptive Statistics
+
+```{r}
+ds <- pisa %>% 
+  pivot_longer(broad_interest:self_efficacy, names_to = "variable") %>% 
+  group_by(variable) %>% 
+  summarise(mean = mean(value, na.rm = TRUE),
+            sd = sd(value, na.rm = TRUE)) 
+
+ds %>% 
+  gt () %>% 
+  tab_header(title = md("**Descriptive Summary**")) %>%
+  cols_label(
+    variable = "Variable",
+    mean = md("M"),
+    sd = md("SD")
+  ) %>%
+  fmt_number(c(2:3),
+             decimals = 2) %>% 
+  cols_align(
+    align = "center",
+    columns = mean
+  ) 
+```
+
+------------------------------------------------------------------------
+
+## Enumeration
+
+------------------------------------------------------------------------
+
+### `tidyLPA`
+
+------------------------------------------------------------------------
+
+Enumerate using `estimate_profiles()`:
+
+-   Estimate models with classes $K = 1:4$
+-   Model has 4 continuous indicators
+-   Default variance-covariance specifications (model 1)
+-   Change `variances` and `covariances` to indicate the model you want to specify (see Vignette)
+
+```{r, eval=FALSE}
+
+# Run LPA models 
+pisa %>% 
+    estimate_profiles(1:4,
+                      package = "MplusAutomation",
+                      ANALYSIS = "starts = 100, 20;",
+                      variances = c("equal", "varying", "equal", "varying"),
+                      covariances = c("zero", "zero", "equal", "equal"),
+                      keepfiles = TRUE)
+
+# Move files to folder 
+files <- list.files(here(), pattern = "^model")
+file.move(files, here("tidyLPA"))
+```
+
+------------------------------------------------------------------------
+
+### `Mplus`
+
+------------------------------------------------------------------------
+
+Alternative method to `estimate_profiles()`: Run enumeration using `mplusObject` method
+
+You can change the model specification for LPA using the syntax provided in lecture.
+
+#### Model 1 
+
+```{r, cache = TRUE, eval = FALSE}
+
+lpa_k14  <- lapply(1:4, function(k) {
+  lpa_enum  <- mplusObject(
+      
+    TITLE = glue("Class {k}"), 
+  
+    VARIABLE = glue(
+    "usevar = broad_interest-self_efficacy;
+     classes = c({k}); "),
+  
+  ANALYSIS = 
+   "estimator = mlr; 
+    type = mixture;
+    starts = 100 20;",
+  
+  OUTPUT = "sampstat residual tech11 tech14;",
+  
+  usevariables = colnames(pisa),
+  rdata = pisa)
+
+lpa_enum_fit <- mplusModeler(lpa_enum, 
+                dataout=glue(here("enum_lpa", "lpa_pisa.dat")),
+                modelout=glue(here("enum_lpa", "c{k}_lpa_m1.inp")) ,
+                check=TRUE, run = TRUE, hashfilename = FALSE)
+})
+```
+
+#### Model 2
+
+```{r, eval = FALSE}
+lpa_m2_k14  <- lapply(1:4, function(k){ 
+  
+  MODEL <- lapply(1:k, function(i){
+    
+    glue("
+    
+    %c#{i}%
+   broad_interest-self_efficacy;      ! variances are freely estimated
+   
+   ")
+  })
+  
+  lpa_enum_m2  <- mplusObject(
+    TITLE = glue("Class {k} - Model2"),
+    
+    VARIABLE = glue(
+      "usevar = broad_interest-self_efficacy;
+     classes = c({k});"),
+    
+    ANALYSIS = 
+      "estimator = mlr; 
+    type = mixture;
+    starts = 100 20;",
+    
+    MODEL = glue("{MODEL[1:k]}"),
+    
+    
+    OUTPUT = "sampstat residual tech11 tech14;",
+    
+    usevariables = colnames(pisa),
+    rdata = pisa)
+  
+  lpa_m2_fit <- mplusModeler(lpa_enum_m2,
+                             dataout = here("enum_lpa", "lpa_pisa.dat"),
+                             modelout = glue(here("enum_lpa","c{k}_lpa_m2.inp")),
+                             check = TRUE, run = TRUE, hashfilename = FALSE)
+})
+```
+
+
+------------------------------------------------------------------------
+
+## Table of Fit
+
+APA formatted model fit table with additional fit indices
+
+Extract data:
+
+```{r}
+output_pisa <- readModels(here("tidyLPA"), quiet = TRUE)
+
+enum_extract <- LatexSummaryTable(
+  output_pisa,
+  keepCols = c(
+    "Title",
+    "Parameters",
+    "LL",
+    "BIC",
+    "aBIC",
+    "BLRT_PValue",
+    "Observations"
+  )
+)
+
+allFit <- enum_extract %>%
+  mutate(aBIC = -2 * LL + Parameters * log((Observations + 2) / 24)) %>%
+  mutate(CAIC = -2 * LL + Parameters * (log(Observations) + 1)) %>%
+  mutate(AWE = -2 * LL + 2 * Parameters * (log(Observations) + 1.5)) %>%
+  separate(Title, c("Model", "Class"), sep = "with") %>% 
+  mutate(SIC = -.5 * BIC) %>%
+  drop_na(SIC) %>% 
+  group_by(Model) %>% 
+  mutate(expSIC = exp(SIC - max(SIC))) %>%
+  mutate(BF = exp(SIC - lead(SIC))) %>%
+  mutate(cmPk = expSIC / sum(expSIC)) %>%
+  ungroup() %>% 
+  unite(Title, c("Model", "Class"), sep = "with", remove = TRUE) %>% 
+  dplyr::select(1:5, 8:9, 6, 12, 13) %>%
+  mutate(Title = str_to_title(Title)) %>% 
+  arrange(Title)
+```
+
+Create table:
+
+```{r}
+allFit %>%
+  gt() %>%
+  tab_header(title = md("**Model Fit Summary Table**")) %>%
+  cols_label(
+    Title = "Classes",
+    Parameters = md("Par"),
+    LL = md("*LL*"),
+    BLRT_PValue = "BLRT",
+    BF = md("BF"),
+    cmPk = md("*cmPk*")
+  ) %>%
+  tab_footnote(
+    footnote = md(
+      "*Note.* Par = Parameters; *LL* = model log likelihood;
+BIC = Bayesian information criterion;
+aBIC = sample size adjusted BIC; CAIC = consistent Akaike information criterion;
+AWE = approximate weight of evidence criterion;
+BLRT = bootstrapped likelihood ratio test p-value;
+VLMR = Vuong-Lo-Mendell-Rubin adjusted likelihood ratio test p-value;
+*cmPk* = approximate correct model probability."
+    ),
+locations = cells_title()
+  )  %>%
+  tab_options(column_labels.font.weight = "bold") %>%
+  fmt_number(
+    9,
+    decimals = 2,
+    drop_trailing_zeros = TRUE,
+    suffixing = TRUE
+  ) %>%
+  fmt_number(c(3:8, 10),
+             decimals = 0) %>%
+  fmt_missing(1:10,
+              missing_text = "--") %>%
+  fmt(
+    c(8, 10),
+    fns = function(x)
+      ifelse(x < 0.001, "<0.001",
+             scales::number(x, accuracy = 0.01))
+  ) %>%
+  fmt(
+    9,
+    fns = function (x)
+      ifelse(x > 100, ">100",
+             scales::number(x, accuracy = .1))
+  ) %>% 
+  tab_row_group(
+    label = "Model 1",
+    rows = c(1:4)) %>%
+  tab_row_group(
+    label = "Model 2",
+    rows =c(5:8)) %>%    
+  tab_row_group(
+    label = "Model 3",
+    rows = c(9:12)) %>%
+  tab_row_group(
+    label = "Model 4",
+    rows = c(13:16)) %>%    
+  row_group_order(
+    groups = c("Model 1","Model 2", "Model 3", "Model 4")
+  ) 
+```
+
+------------------------------------------------------------------------
+
+## Information Criteria Plot
+
+Plot information criteria
+
+```{r}
+allFit %>% 
+  filter(grepl("Model 1", Title)) %>% 
+  dplyr::select(2:7) %>% 
+  rowid_to_column() %>% 
+  pivot_longer(`BIC`:`AWE`,
+               names_to = "Index",
+               values_to = "ic_value") %>%  
+mutate(Index = factor(Index,
+                      levels = c ("AWE", "CAIC", "BIC", "aBIC"))) %>% 
+  ggplot(aes(x = rowid, y = ic_value,
+             color = Index, shape = Index,
+             group = Index, lty = Index)) +
+  geom_point(size = 2.0) + geom_line(size = .8) +
+  scale_x_continuous(breaks = 1:6) +
+  scale_colour_grey(end = .5) +
+  theme_cowplot() +
+  labs(x = "Number of Classes", y = "Information Criteria Value") +
+  theme(legend.title = element_blank(),
+        legend.position = "top")
+```
+
+------------------------------------------------------------------------
+
+## Compare models
+
+```{r}
+# MplusAutomation Method using `compareModels` 
+
+parallelModels <- readModels(here("tidyLPA"))
+
+compareModels(parallelModels[["model_3_class_2.out"]],
+  parallelModels[["model_4_class_2.out"]], diffTest = TRUE)
+```
+
+------------------------------------------------------------------------
+
+##  Latent Profile Plot
+
+```{r}
+source("plot_lpa_function.txt")
+
+plot_lpa_function(model_name = output_pisa$model_1_class_2.out)
+```
+
+save figure
+
+```{r, eval = FALSE}
+ggsave(here("figures", "C4_LPA_Plot.png"), dpi="retina", height=5, width=7, units="in")
+```
+
+------------------------------------------------------------------------
+
+## References
+
+
+Hallquist, M. N., & Wiley, J. F. (2018). MplusAutomation: An R Package for Facilitating Large-Scale Latent Variable Analyses in Mplus. Structural equation modeling: a multidisciplinary journal, 25(4), 621-638.
+
+Miller, J. D., Hoffer, T., Suchner, R., Brown, K., & Nelson, C. (1992). LSAY codebook. Northern Illinois University.
+
+Muthén, B. O., Muthén, L. K., & Asparouhov, T. (2017). Regression and mediation analysis using Mplus. Los Angeles, CA: Muthén & Muthén.
+
+Muthén, L.K. and Muthén, B.O. (1998-2017).  Mplus User’s Guide.  Eighth Edition. Los Angeles, CA: Muthén & Muthén
+
+Rosenberg, J. M., van Lissa, C. J., Beymer, P. N., Anderson, D. J., Schell, M. J. & Schmidt, J. A. (2019). tidyLPA: Easily carry out Latent Profile Analysis (LPA) using open-source or commercial software [R package]. https://data-edu.github.io/tidyLPA/
+
+R Core Team (2017). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL http://www.R-project.org/
+
+Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686
+
+------------------------------------------------------------------------
+
+![](figures/UCSB_Navy_mark.png){width="75%"}

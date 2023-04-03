@@ -1,0 +1,35 @@
+TITLE:
+C3 LCA - Calculated k-Class 95% CI
+DATA:
+FILE = "C:/Users/Dina Arch/Box/IES_IMMERSE/Training Materials/lca_enum/enum/bully.dat";
+ 
+VARIABLE:
+NAMES = report_dis report_race report_sex counselors_fte psych_fte law_fte; 
+ MISSING=.;
+ categorical = report_dis-law_fte;
+   usevar =  report_dis-law_fte;
+   classes = c(3);
+ANALYSIS:
+estimator = ml;
+    type = mixture;
+    starts = 200 100; 
+    processors = 10;
+    stseed = 802779;
+    bootstrap = 1000;
+MODEL:
+
+  !CHANGE THIS SECTION TO YOUR CHOSEN k-CLASS MODEL
+    
+  %OVERALL%
+  [C#1](c1);
+  
+  [C#2](C2)
+
+  Model Constraint:
+  New(p1 p2 p3);
+  
+  p1 = exp(c1)/(1+exp(c1)+exp(c2));
+  p2 = exp(c2)/(1+exp(c1)+exp(c2));
+  p3 = 1/(1+exp(c1)+exp(c2));
+OUTPUT:
+sampstat tech11 tech14 cinterval(bcbootstrap)

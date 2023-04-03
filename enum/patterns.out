@@ -1,0 +1,1099 @@
+Mplus VERSION 8.8
+MUTHEN & MUTHEN
+03/06/2023   1:23 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  C3 LCA - Save response patterns
+  DATA:
+  FILE = "C:/Users/Dina Arch/Box/IES_IMMERSE/Training Materials/lca_enum/enum/bully.dat";
+
+  VARIABLE:
+  NAMES = report_dis report_race report_sex counselors_fte psych_fte law_fte;
+   MISSING=.;
+   categorical = report_dis-law_fte;
+     usevar =  report_dis-law_fte;
+
+     classes = c(2);
+  ANALYSIS:
+  estimator = mlr;
+      type = mixture;
+      starts = 200 100;
+      processors = 10;
+      stseed = 802779;
+  OUTPUT:
+  residual patterns tech10 tech11 tech14
+  SAVEDATA:
+  File=savedata.dat;
+      Save=cprob;
+
+      ! Code to save response frequency data
+
+      response is resp_patterns.dat;
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+C3 LCA - Save response patterns
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        2027
+
+Number of dependent variables                                    6
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   REPORT_D    REPORT_R    REPORT_S    COUNSELO    PSYCH_FT    LAW_FTE
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                        200
+  Number of final stage optimizations                          100
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                  802779
+Link                                                         LOGIT
+
+Input data file(s)
+  C:/Users/Dina Arch/Box/IES_IMMERSE/Training Materials/lca_enum/enum/bully.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             4
+     Number of y missing data patterns           0
+     Number of u missing data patterns           4
+
+
+SUMMARY OF MISSING DATA PATTERNS
+
+
+     MISSING DATA PATTERNS FOR U (x = not missing)
+
+           1  2  3  4
+ REPORT_D  x  x  x
+ REPORT_R  x  x  x
+ REPORT_S  x  x  x
+ COUNSELO  x     x  x
+ PSYCH_FT  x        x
+ LAW_FTE   x     x  x
+
+
+     MISSING DATA PATTERN FREQUENCIES FOR U
+
+    Pattern   Frequency     Pattern   Frequency     Pattern   Frequency
+          1        1970           3           3
+          2          27           4          27
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR U
+
+
+           Covariance Coverage
+              REPORT_D      REPORT_R      REPORT_S      COUNSELO      PSYCH_FT
+              ________      ________      ________      ________      ________
+ REPORT_D       0.987
+ REPORT_R       0.987         0.987
+ REPORT_S       0.987         0.987         0.987
+ COUNSELO       0.973         0.973         0.973         0.987
+ PSYCH_FT       0.972         0.972         0.972         0.985         0.985
+ LAW_FTE        0.973         0.973         0.973         0.987         0.985
+
+
+           Covariance Coverage
+              LAW_FTE
+              ________
+ LAW_FTE        0.987
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    REPORT_D
+      Category 1    0.958         1915.000
+      Category 2    0.043           85.000
+    REPORT_R
+      Category 1    0.897         1794.000
+      Category 2    0.103          206.000
+    REPORT_S
+      Category 1    0.830         1660.000
+      Category 2    0.170          340.000
+    COUNSELO
+      Category 1    0.540         1081.000
+      Category 2    0.460          919.000
+    PSYCH_FT
+      Category 1    0.526         1050.000
+      Category 2    0.474          947.000
+    LAW_FTE
+      Category 1    0.875         1749.000
+      Category 2    0.126          251.000
+
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -5194.136  728307           65
+           -5194.136  236155           88
+           -5194.136  230697           177
+           -5194.136  181263           119
+           -5194.136  274506           82
+           -5194.136  550660           11
+           -5194.136  841252           126
+           -5194.136  685580           3
+           -5194.136  766873           186
+           -5194.136  698347           176
+           -5194.136  160503           9
+           -5194.136  358638           37
+           -5194.136  851634           114
+           -5194.136  556540           45
+           -5194.136  274188           181
+           -5194.136  68744            4
+           -5194.136  656868           162
+           -5194.136  53379            57
+           -5194.136  405868           6
+           -5194.136  266136           131
+           -5194.136  520527           77
+           -5194.136  4557             30
+           -5194.136  18921            53
+           -5194.136  606384           142
+           -5194.136  751114           188
+           -5194.136  147374           111
+           -5194.136  832437           21
+           -5194.136  400496           89
+           -5194.136  545754           87
+           -5194.136  444275           101
+           -5194.136  309668           39
+           -5194.136  770281           92
+           -5194.136  635899           14
+           -5194.136  353316           13
+           -5194.136  274239           193
+           -5194.136  398453           150
+           -5194.136  140197           58
+           -5194.136  850414           155
+           -5194.136  316564           19
+           -5194.136  886194           134
+           -5194.136  449447           151
+           -5194.136  405442           185
+           -5194.136  151507           183
+           -5194.136  787574           97
+           -5194.136  198122           189
+           -5194.136  419795           83
+           -5194.136  386431           138
+           -5194.136  135968           175
+           -5194.136  220812           141
+           -5194.136  922536           105
+           -5194.136  400334           12
+           -5194.136  733769           80
+           -5194.136  248123           68
+           -5194.136  718599           178
+           -5194.136  unperturbed      0
+
+45 perturbed starting value run(s) did not converge or were rejected in the third stage.
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       13
+
+Loglikelihood
+
+          H0 Value                       -5194.136
+          H0 Scaling Correction Factor      1.1208
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   10414.272
+          Bayesian (BIC)                 10487.258
+          Sample-Size Adjusted BIC       10445.956
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit for the Binary and Ordered Categorical
+(Ordinal) Outcomes
+
+          Pearson Chi-Square
+
+          Value                            224.520
+          Degrees of Freedom                    50
+          P-Value                           0.0000
+
+          Likelihood Ratio Chi-Square
+
+          Value                            219.073
+          Degrees of Freedom                    50
+          P-Value                           0.0000
+
+Chi-Square Test for MCAR under the Unrestricted Latent Class Indicator Model
+
+          Pearson Chi-Square
+
+          Value                             42.095
+          Degrees of Freedom                    45
+          P-Value                           0.5958
+
+          Likelihood Ratio Chi-Square
+
+          Value                             57.954
+          Degrees of Freedom                    45
+          P-Value                           0.0931
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1       1583.33544          0.78112
+       2        443.66456          0.21888
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1       1583.33544          0.78112
+       2        443.66456          0.21888
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1             1636          0.80710
+       2              391          0.19290
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.659
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2
+
+    1   0.928    0.072
+    2   0.166    0.834
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2
+
+    1   0.959    0.041
+    2   0.265    0.735
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2
+
+    1      3.150    0.000
+    2     -1.018    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ Thresholds
+    REPORT_D$1         5.266      0.620      8.493      0.000
+    REPORT_R$1         3.912      0.346     11.314      0.000
+    REPORT_S$1         3.087      0.289     10.668      0.000
+    COUNSELO$1         0.385      0.082      4.699      0.000
+    PSYCH_FT$1         0.403      0.089      4.539      0.000
+    LAW_FTE$1          2.472      0.212     11.682      0.000
+
+Latent Class 2
+
+ Thresholds
+    REPORT_D$1         1.553      0.233      6.671      0.000
+    REPORT_R$1         0.414      0.268      1.547      0.122
+    REPORT_S$1        -0.476      0.330     -1.442      0.149
+    COUNSELO$1        -0.627      0.144     -4.354      0.000
+    PSYCH_FT$1        -1.009      0.152     -6.629      0.000
+    LAW_FTE$1          0.879      0.157      5.603      0.000
+
+Categorical Latent Variables
+
+ Means
+    C#1                1.272      0.227      5.605      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.687E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+RESULTS IN PROBABILITY SCALE
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ REPORT_DIS
+    Category 1         0.995      0.003    313.806      0.000
+    Category 2         0.005      0.003      1.621      0.105
+ REPORT_RAC
+    Category 1         0.980      0.007    147.534      0.000
+    Category 2         0.020      0.007      2.950      0.003
+ REPORT_SEX
+    Category 1         0.956      0.012     79.167      0.000
+    Category 2         0.044      0.012      3.614      0.000
+ COUNSELORS
+    Category 1         0.595      0.020     30.132      0.000
+    Category 2         0.405      0.020     20.500      0.000
+ PSYCH_FTE
+    Category 1         0.599      0.021     28.138      0.000
+    Category 2         0.401      0.021     18.813      0.000
+ LAW_FTE
+    Category 1         0.922      0.015     60.702      0.000
+    Category 2         0.078      0.015      5.125      0.000
+
+Latent Class 2
+
+ REPORT_DIS
+    Category 1         0.825      0.034     24.597      0.000
+    Category 2         0.175      0.034      5.203      0.000
+ REPORT_RAC
+    Category 1         0.602      0.064      9.385      0.000
+    Category 2         0.398      0.064      6.201      0.000
+ REPORT_SEX
+    Category 1         0.383      0.078      4.918      0.000
+    Category 2         0.617      0.078      7.912      0.000
+ COUNSELORS
+    Category 1         0.348      0.033     10.644      0.000
+    Category 2         0.652      0.033     19.935      0.000
+ PSYCH_FTE
+    Category 1         0.267      0.030      8.964      0.000
+    Category 2         0.733      0.030     24.590      0.000
+ LAW_FTE
+    Category 1         0.707      0.033     21.724      0.000
+    Category 2         0.293      0.033      9.018      0.000
+
+
+LATENT CLASS INDICATOR ODDS RATIOS FOR THE LATENT CLASSES
+
+                                                95% C.I.
+                    Estimate       S.E.  Lower 2.5% Upper 2.5%
+
+Latent Class 1 Compared to Latent Class 2
+
+ REPORT_D
+    Category > 1       0.024      0.015      0.007      0.082
+ REPORT_R
+    Category > 1       0.030      0.011      0.015      0.062
+ REPORT_S
+    Category > 1       0.028      0.009      0.015      0.054
+ COUNSELO
+    Category > 1       0.363      0.069      0.250      0.527
+ PSYCH_FT
+    Category > 1       0.244      0.045      0.169      0.351
+ LAW_FTE
+    Category > 1       0.203      0.063      0.110      0.375
+
+
+RESIDUAL OUTPUT
+
+
+     RESIDUAL OUTPUT IS NOT AVAILABLE FOR THIS MODEL.  ADDITIONAL OUTPUT FOR
+     CATEGORICAL, COUNT, AND NOMINAL VARIABLES MAY BE AVAILABLE USING TECH10.
+
+
+TECHNICAL 10 OUTPUT
+
+
+     MODEL FIT INFORMATION FOR THE LATENT CLASS INDICATOR MODEL PART
+
+
+     RESPONSE PATTERNS
+
+     No.  Pattern    No.  Pattern    No.  Pattern    No.  Pattern
+       1  000000       2  000001       3  000010       4  000011
+       5  000100       6  000101       7  000110       8  000111
+       9  001000      10  001001      11  001010      12  001011
+      13  001100      14  001101      15  001110      16  001111
+      17  010000      18  010001      19  010010      20  010011
+      21  010100      22  010101      23  010110      24  010111
+      25  011000      26  011001      27  011010      28  011011
+      29  011100      30  011101      31  011110      32  011111
+      33  100000      34  100010      35  100100      36  100110
+      37  100111      38  101000      39  101010      40  101011
+      41  101100      42  101110      43  101111      44  110000
+      45  110010      46  110100      47  110110      48  110111
+      49  111000      50  111010      51  111011      52  111100
+      53  111101      54  111110      55  111111      56  000***
+      57  0001*0      58  ***000      59  ***100      60  ***101
+
+
+
+     RESPONSE PATTERN FREQUENCIES AND CHI-SQUARE CONTRIBUTIONS
+
+    Response          Frequency     Standardized  Chi-square Contribution
+     Pattern    Observed  Estimated   Residual    Pearson   Loglikelihood  Deleted
+                                     (z-score)
+         1       525.00     477.48       2.50       4.63       113.91
+         2        14.00      42.10      -4.38      18.75       -31.14
+         3       299.00     330.44      -1.90       2.95       -66.52
+         4        34.00      32.79       0.21       0.04         1.69
+         5       293.00     331.28      -2.31       4.24       -57.43
+         6        33.00      31.31       0.30       0.09         4.09
+         7       251.00     242.47       0.59       0.29        14.43
+         8        75.00      29.64       8.39      69.40       137.56
+         9        36.00      30.23       1.06       1.10        12.28
+        10         3.00       5.42      -1.04       1.08        -3.73
+        11        38.00      38.23      -0.04      -0.03        -2.63
+        12         2.00      11.11      -2.74       7.46        -6.97
+        13        20.00      30.93      -1.98       3.86       -17.38
+        14         8.00       7.99       0.00       0.00        -0.11
+        15        72.00      54.42       2.42       5.62        36.20
+        16        28.00      19.35       1.98       3.84        19.09
+        17        15.00      13.00       0.56       0.31         4.16
+        18         3.00       2.28       0.48       0.23         1.48
+        19        24.00      16.09       1.98       3.86        17.81
+        20         2.00       4.59      -1.21       1.46        -3.44
+        21        11.00      13.10      -0.58       0.34        -3.81
+        22         1.00       3.32      -1.27       1.62        -2.41
+        23         7.00      22.62      -3.30      10.78       -16.82
+        24         2.00       7.97      -2.12       4.47        -5.64
+        25         9.00       6.17       1.14       1.30         6.72
+        26         3.00       2.42       0.37       0.14         1.12
+        27        20.00      16.03       1.00       0.97         7.71
+        28         4.00       6.56      -1.00       1.00        -4.18
+        29        18.00      11.04       2.10       4.39        17.65
+        30         4.00       4.49      -0.23       0.05        -0.98
+        31        19.00      29.68      -1.97       3.83       -18.03
+        32        12.00      12.26      -0.07       0.00        -1.19
+        33         4.00       3.58       0.22       0.05         0.85
+        34         1.00       4.76      -1.73       2.97        -3.18
+        35         8.00       3.80       2.16       4.65        11.94
+        36         5.00       6.98      -0.75       0.56        -3.61
+        37         2.00       2.53      -0.33       0.11        -1.05
+        38         3.00       1.95       0.75       0.57         2.57
+        39         2.00       5.11      -1.38       1.89        -3.87
+        40         1.00       2.10      -0.76       0.57        -1.54
+        41         2.00       3.52      -0.81       0.65        -2.25
+        42         3.00       9.49      -2.11       4.43        -7.08
+        43         2.00       3.92      -0.97       0.94        -2.81
+        44         2.00       0.80       1.34       1.78         3.63
+        45         6.00       2.10       2.69       7.22        12.24
+        46         2.00       1.45       0.46       0.21         1.30
+        47         7.00       3.90       1.57       2.46         7.80
+        48         4.00       1.61       1.88       3.54         7.05
+        49         3.00       1.22       1.62       2.62         5.39
+        50         8.00       3.33       2.56       6.54        13.56
+        51         5.00       1.38       3.08       9.46        12.57
+        52         1.00       2.27      -0.85       0.71        -1.64
+        53         2.00       0.94       1.09       1.18         2.97
+        54         6.00       6.24      -0.09       0.00        -0.81
+        55         6.00       2.59       2.12       4.49         9.74
+        56        27.00      20.80       2.84       0.14         0.54
+        57         3.00       0.87       2.70      -0.41        -0.25
+        58        15.00       7.32       3.32       2.58         3.67
+        59        11.00       5.45       2.66      -1.66        -2.02
+        60         1.00       0.70       0.36      -0.05        -0.12
+
+     THE TOTAL PEARSON CHI-SQUARE CONTRIBUTION FROM EMPTY CELLS IS         8.23
+
+
+     MOST FREQUENT RESPONSE PATTERNS AND CHI-SQUARE CONTRIBUTIONS
+
+    Response          Frequency     Standardized  Chi-square Contribution
+     Pattern    Observed  Estimated   Residual    Pearson   Loglikelihood
+                                     (z-score)
+         1       525.00     477.48       2.50       4.63       113.91
+         3       299.00     330.44      -1.90       2.95       -66.52
+         5       293.00     331.28      -2.31       4.24       -57.43
+         7       251.00     242.47       0.59       0.29        14.43
+         8        75.00      29.64       8.39      69.40       137.56
+        15        72.00      54.42       2.42       5.62        36.20
+        11        38.00      38.23      -0.04      -0.03        -2.63
+         9        36.00      30.23       1.06       1.10        12.28
+         4        34.00      32.79       0.21       0.04         1.69
+         6        33.00      31.31       0.30       0.09         4.09
+        16        28.00      19.35       1.98       3.84        19.09
+        56        27.00      20.80       2.84       0.14         0.54
+        19        24.00      16.09       1.98       3.86        17.81
+        13        20.00      30.93      -1.98       3.86       -17.38
+        27        20.00      16.03       1.00       0.97         7.71
+        31        19.00      29.68      -1.97       3.83       -18.03
+        29        18.00      11.04       2.10       4.39        17.65
+        17        15.00      13.00       0.56       0.31         4.16
+        58        15.00       7.32       3.32       2.58         3.67
+         2        14.00      42.10      -4.38      18.75       -31.14
+     Number of Significant Standardized Residuals     12
+
+
+     UNIVARIATE MODEL FIT INFORMATION
+
+                               Estimated Probabilities
+                                                  Standardized
+     Variable              H1           H0          Residual
+                                                   (z-score)
+     REPORT_D
+       Category 1        0.958        0.958          -0.015
+       Category 2        0.042        0.042           0.015
+       Univariate Pearson Chi-Square                  0.000
+       Univariate Log-Likelihood Chi-Square           0.000
+       Number of Significant Standardized Residuals   0
+     REPORT_R
+       Category 1        0.897        0.898          -0.021
+       Category 2        0.103        0.102           0.021
+       Univariate Pearson Chi-Square                  0.000
+       Univariate Log-Likelihood Chi-Square           0.000
+       Number of Significant Standardized Residuals   0
+     REPORT_S
+       Category 1        0.831        0.831          -0.004
+       Category 2        0.169        0.169           0.004
+       Univariate Pearson Chi-Square                  0.000
+       Univariate Log-Likelihood Chi-Square           0.000
+       Number of Significant Standardized Residuals   0
+     COUNSELO
+       Category 1        0.541        0.541          -0.013
+       Category 2        0.459        0.459           0.013
+       Univariate Pearson Chi-Square                  0.000
+       Univariate Log-Likelihood Chi-Square           0.000
+       Number of Significant Standardized Residuals   0
+     PSYCH_FT
+       Category 1        0.526        0.527          -0.013
+       Category 2        0.474        0.473           0.013
+       Univariate Pearson Chi-Square                  0.000
+       Univariate Log-Likelihood Chi-Square           0.000
+       Number of Significant Standardized Residuals   0
+     LAW_FTE
+       Category 1        0.875        0.875          -0.021
+       Category 2        0.125        0.125           0.021
+       Univariate Pearson Chi-Square                  0.000
+       Univariate Log-Likelihood Chi-Square           0.000
+       Number of Significant Standardized Residuals   0
+
+       Overall Univariate Pearson Chi-Square                         0.001
+       Overall Univariate Log-Likelihood Chi-Square                  0.001
+       Overall Number of Significant Standardized Residuals          0
+
+
+     BIVARIATE MODEL FIT INFORMATION
+
+                                              Estimated Probabilities
+                                                                 Standardized
+     Variable       Variable              H1           H0          Residual
+                                                                  (z-score)
+     REPORT_D       REPORT_R
+       Category 1     Category 1        0.881        0.871           1.380
+       Category 1     Category 2        0.077        0.087          -1.654
+       Category 2     Category 1        0.017        0.027          -2.900
+       Category 2     Category 2        0.026        0.015           3.853
+       Bivariate Pearson Chi-Square                                 25.545
+       Bivariate Log-Likelihood Chi-Square                          24.449
+       Number of Significant Standardized Residuals                  2
+     REPORT_D       REPORT_S
+       Category 1     Category 1        0.810        0.812          -0.231
+       Category 1     Category 2        0.147        0.145           0.247
+       Category 2     Category 1        0.020        0.018           0.656
+       Category 2     Category 2        0.022        0.024          -0.561
+       Bivariate Pearson Chi-Square                                  0.792
+       Bivariate Log-Likelihood Chi-Square                           0.786
+       Number of Significant Standardized Residuals                  0
+     REPORT_D       COUNSELO
+       Category 1     Category 1        0.523        0.525          -0.168
+       Category 1     Category 2        0.434        0.432           0.163
+       Category 2     Category 1        0.017        0.016           0.624
+       Category 2     Category 2        0.025        0.027          -0.464
+       Bivariate Pearson Chi-Square                                  0.621
+       Bivariate Log-Likelihood Chi-Square                           0.612
+       Number of Significant Standardized Residuals                  0
+     REPORT_D       PSYCH_FT
+       Category 1     Category 1        0.513        0.514          -0.109
+       Category 1     Category 2        0.445        0.444           0.104
+       Category 2     Category 1        0.014        0.013           0.430
+       Category 2     Category 2        0.029        0.030          -0.265
+       Bivariate Pearson Chi-Square                                  0.263
+       Bivariate Log-Likelihood Chi-Square                           0.259
+       Number of Significant Standardized Residuals                  0
+     REPORT_D       LAW_FTE
+       Category 1     Category 1        0.843        0.844          -0.108
+       Category 1     Category 2        0.114        0.113           0.114
+       Category 2     Category 1        0.031        0.031           0.187
+       Category 2     Category 2        0.011        0.012          -0.274
+       Bivariate Pearson Chi-Square                                  0.121
+       Bivariate Log-Likelihood Chi-Square                           0.122
+       Number of Significant Standardized Residuals                  0
+     REPORT_R       REPORT_S
+       Category 1     Category 1        0.788        0.783           0.562
+       Category 1     Category 2        0.109        0.115          -0.747
+       Category 2     Category 1        0.043        0.048          -1.091
+       Category 2     Category 2        0.060        0.054           1.057
+       Bivariate Pearson Chi-Square                                  2.751
+       Bivariate Log-Likelihood Chi-Square                           2.769
+       Number of Significant Standardized Residuals                  0
+     REPORT_R       COUNSELO
+       Category 1     Category 1        0.489        0.502          -1.115
+       Category 1     Category 2        0.408        0.396           1.127
+       Category 2     Category 1        0.052        0.039           2.831
+       Category 2     Category 2        0.051        0.063          -2.242
+       Bivariate Pearson Chi-Square                                 13.798
+       Bivariate Log-Likelihood Chi-Square                          13.437
+       Number of Significant Standardized Residuals                  2
+     REPORT_R       PSYCH_FT
+       Category 1     Category 1        0.489        0.494          -0.461
+       Category 1     Category 2        0.408        0.403           0.457
+       Category 2     Category 1        0.037        0.032           1.264
+       Category 2     Category 2        0.065        0.070          -0.853
+       Bivariate Pearson Chi-Square                                  2.453
+       Bivariate Log-Likelihood Chi-Square                           2.396
+       Number of Significant Standardized Residuals                  0
+     REPORT_R       LAW_FTE
+       Category 1     Category 1        0.796        0.799          -0.369
+       Category 1     Category 2        0.101        0.098           0.475
+       Category 2     Category 1        0.079        0.076           0.532
+       Category 2     Category 2        0.024        0.027          -0.833
+       Bivariate Pearson Chi-Square                                  1.169
+       Bivariate Log-Likelihood Chi-Square                           1.190
+       Number of Significant Standardized Residuals                  0
+     REPORT_S       COUNSELO
+       Category 1     Category 1        0.473        0.474          -0.097
+       Category 1     Category 2        0.358        0.357           0.098
+       Category 2     Category 1        0.068        0.067           0.168
+       Category 2     Category 2        0.101        0.102          -0.134
+       Bivariate Pearson Chi-Square                                  0.053
+       Bivariate Log-Likelihood Chi-Square                           0.053
+       Number of Significant Standardized Residuals                  0
+     REPORT_S       PSYCH_FT
+       Category 1     Category 1        0.470        0.470          -0.025
+       Category 1     Category 2        0.361        0.361           0.023
+       Category 2     Category 1        0.057        0.056           0.027
+       Category 2     Category 2        0.112        0.113          -0.015
+       Bivariate Pearson Chi-Square                                  0.002
+       Bivariate Log-Likelihood Chi-Square                           0.002
+       Number of Significant Standardized Residuals                  0
+     REPORT_S       LAW_FTE
+       Category 1     Category 1        0.745        0.748          -0.294
+       Category 1     Category 2        0.086        0.083           0.457
+       Category 2     Category 1        0.130        0.127           0.362
+       Category 2     Category 2        0.040        0.042          -0.591
+       Bivariate Pearson Chi-Square                                  0.663
+       Bivariate Log-Likelihood Chi-Square                           0.667
+       Number of Significant Standardized Residuals                  0
+     COUNSELO       PSYCH_FT
+       Category 1     Category 1        0.318        0.299           1.875
+       Category 1     Category 2        0.223        0.242          -2.019
+       Category 2     Category 1        0.208        0.228          -2.063
+       Category 2     Category 2        0.251        0.231           2.067
+       Bivariate Pearson Chi-Square                                 12.124
+       Bivariate Log-Likelihood Chi-Square                          12.167
+       Number of Significant Standardized Residuals                  3
+     COUNSELO       LAW_FTE
+       Category 1     Category 1        0.505        0.483           2.069
+       Category 1     Category 2        0.035        0.059          -4.430
+       Category 2     Category 1        0.369        0.392          -2.131
+       Category 2     Category 2        0.090        0.066           4.203
+       Bivariate Pearson Chi-Square                                 39.940
+       Bivariate Log-Likelihood Chi-Square                          41.384
+       Number of Significant Standardized Residuals                  4
+     PSYCH_FT       LAW_FTE
+       Category 1     Category 1        0.491        0.473           1.580
+       Category 1     Category 2        0.036        0.054          -3.532
+       Category 2     Category 1        0.384        0.402          -1.623
+       Category 2     Category 2        0.089        0.071           3.116
+       Bivariate Pearson Chi-Square                                 23.712
+       Bivariate Log-Likelihood Chi-Square                          24.617
+       Number of Significant Standardized Residuals                  2
+
+       Overall Bivariate Pearson Chi-Square                        124.007
+       Overall Bivariate Log-Likelihood Chi-Square                 124.910
+       Overall Number of Significant Standardized Residuals          13
+
+
+     UNIVARIATE DISTRIBUTION FIT FOR CLASS 1
+
+     Variable          Observed      Estimated      Residual (Obs.-Est.)    Stand. Residual
+     REPORT_D
+       Category 1        0.995          0.995                  0.000                0.000
+       Category 2        0.005          0.005                  0.000                0.000
+     REPORT_R
+       Category 1        0.980          0.980                  0.000                0.000
+       Category 2        0.020          0.020                  0.000                0.000
+     REPORT_S
+       Category 1        0.956          0.956                  0.000                0.000
+       Category 2        0.044          0.044                  0.000                0.000
+     COUNSELO
+       Category 1        0.595          0.595                  0.000                0.000
+       Category 2        0.405          0.405                  0.000                0.000
+     PSYCH_FT
+       Category 1        0.599          0.599                  0.000                0.000
+       Category 2        0.401          0.401                  0.000                0.000
+     LAW_FTE
+       Category 1        0.922          0.922                  0.000                0.000
+       Category 2        0.078          0.078                  0.000                0.000
+
+
+     BIVARIATE DISTRIBUTIONS FIT FOR CLASS 1
+
+     Variable       Variable          Observed     Estimated    Residual (Obs.-Est.)  Stand. Residual
+     REPORT_D       REPORT_R
+       Category 1     Category 1        0.975       0.975             0.000            0.026
+       Category 1     Category 2        0.019       0.020             0.000           -0.029
+       Category 2     Category 1        0.005       0.005             0.000           -0.057
+       Category 2     Category 2        0.000       0.000             0.000            0.405
+     REPORT_D       REPORT_S
+       Category 1     Category 1        0.951       0.951             0.000           -0.009
+       Category 1     Category 2        0.043       0.043             0.000            0.009
+       Category 2     Category 1        0.005       0.005             0.000            0.027
+       Category 2     Category 2        0.000       0.000             0.000           -0.125
+     REPORT_D       COUNSELO
+       Category 1     Category 1        0.593       0.592             0.001            0.077
+       Category 1     Category 2        0.402       0.403            -0.001           -0.084
+       Category 2     Category 1        0.002       0.003            -0.001           -0.562
+       Category 2     Category 2        0.003       0.002             0.001            0.756
+     REPORT_D       PSYCH_FT
+       Category 1     Category 1        0.589       0.596            -0.008           -0.616
+       Category 1     Category 2        0.406       0.399             0.008            0.610
+       Category 2     Category 1        0.004       0.003             0.001            0.888
+       Category 2     Category 2        0.001       0.002            -0.001           -1.002
+     REPORT_D       LAW_FTE
+       Category 1     Category 1        0.916       0.917            -0.001           -0.187
+       Category 1     Category 2        0.079       0.077             0.001            0.180
+       Category 2     Category 1        0.005       0.005             0.000            0.249
+       Category 2     Category 2        0.000       0.000             0.000           -0.686
+     REPORT_R       REPORT_S
+       Category 1     Category 1        0.938       0.938             0.000            0.039
+       Category 1     Category 2        0.043       0.043             0.000           -0.046
+       Category 2     Category 1        0.019       0.019             0.000           -0.069
+       Category 2     Category 2        0.001       0.001             0.000            0.320
+     REPORT_R       COUNSELO
+       Category 1     Category 1        0.580       0.583            -0.003           -0.248
+       Category 1     Category 2        0.400       0.397             0.003            0.223
+       Category 2     Category 1        0.015       0.012             0.003            1.199
+       Category 2     Category 2        0.005       0.008            -0.003           -1.305
+     REPORT_R       PSYCH_FT
+       Category 1     Category 1        0.581       0.588            -0.007           -0.560
+       Category 1     Category 2        0.399       0.393             0.007            0.534
+       Category 2     Category 1        0.012       0.012             0.001            0.207
+       Category 2     Category 2        0.008       0.008             0.000           -0.089
+     REPORT_R       LAW_FTE
+       Category 1     Category 1        0.902       0.904            -0.002           -0.222
+       Category 1     Category 2        0.078       0.076             0.001            0.198
+       Category 2     Category 1        0.019       0.018             0.001            0.234
+       Category 2     Category 2        0.001       0.002             0.000           -0.465
+     REPORT_S       COUNSELO
+       Category 1     Category 1        0.568       0.569            -0.002           -0.124
+       Category 1     Category 2        0.388       0.387             0.001            0.067
+       Category 2     Category 1        0.028       0.026             0.002            0.429
+       Category 2     Category 2        0.017       0.018            -0.001           -0.298
+     REPORT_S       PSYCH_FT
+       Category 1     Category 1        0.568       0.573            -0.006           -0.445
+       Category 1     Category 2        0.388       0.383             0.005            0.387
+       Category 2     Category 1        0.025       0.026            -0.001           -0.206
+       Category 2     Category 2        0.019       0.017             0.002            0.496
+     REPORT_S       LAW_FTE
+       Category 1     Category 1        0.879       0.882            -0.003           -0.312
+       Category 1     Category 2        0.076       0.074             0.002            0.274
+       Category 2     Category 1        0.042       0.040             0.002            0.338
+       Category 2     Category 2        0.002       0.003            -0.001           -0.644
+     COUNSELO       PSYCH_FT
+       Category 1     Category 1        0.379       0.357             0.022            1.828
+       Category 1     Category 2        0.218       0.238            -0.021           -1.955
+       Category 2     Category 1        0.221       0.243            -0.022           -2.043
+       Category 2     Category 2        0.183       0.162             0.021            2.259
+     COUNSELO       LAW_FTE
+       Category 1     Category 1        0.567       0.549             0.018            1.474
+       Category 1     Category 2        0.028       0.046            -0.018           -3.490
+       Category 2     Category 1        0.355       0.373            -0.018           -1.517
+       Category 2     Category 2        0.050       0.032             0.018            4.199
+     PSYCH_FT       LAW_FTE
+       Category 1     Category 1        0.570       0.553             0.017            1.370
+       Category 1     Category 2        0.030       0.047            -0.017           -3.231
+       Category 2     Category 1        0.352       0.369            -0.017           -1.423
+       Category 2     Category 2        0.048       0.031             0.017            3.951
+
+
+     UNIVARIATE DISTRIBUTION FIT FOR CLASS 2
+
+     Variable          Observed      Estimated      Residual (Obs.-Est.)    Stand. Residual
+     REPORT_D
+       Category 1        0.825          0.825                  0.000                0.000
+       Category 2        0.175          0.175                  0.000                0.000
+     REPORT_R
+       Category 1        0.602          0.602                  0.000                0.000
+       Category 2        0.398          0.398                  0.000                0.000
+     REPORT_S
+       Category 1        0.383          0.383                  0.000                0.000
+       Category 2        0.617          0.617                  0.000                0.000
+     COUNSELO
+       Category 1        0.348          0.348                  0.000                0.000
+       Category 2        0.652          0.652                  0.000                0.000
+     PSYCH_FT
+       Category 1        0.267          0.267                  0.000                0.000
+       Category 2        0.733          0.733                  0.000                0.000
+     LAW_FTE
+       Category 1        0.707          0.707                  0.000                0.000
+       Category 2        0.293          0.293                  0.000                0.000
+
+
+     BIVARIATE DISTRIBUTIONS FIT FOR CLASS 2
+
+     Variable       Variable          Observed     Estimated    Residual (Obs.-Est.)  Stand. Residual
+     REPORT_D       REPORT_R
+       Category 1     Category 1        0.545       0.497             0.048            2.011
+       Category 1     Category 2        0.281       0.328            -0.048           -2.141
+       Category 2     Category 1        0.057       0.105            -0.048           -3.279
+       Category 2     Category 2        0.117       0.069             0.048            3.956
+     REPORT_D       REPORT_S
+       Category 1     Category 1        0.308       0.316            -0.009           -0.386
+       Category 1     Category 2        0.518       0.509             0.009            0.359
+       Category 2     Category 1        0.075       0.067             0.009            0.718
+       Category 2     Category 2        0.099       0.108            -0.009           -0.579
+     REPORT_D       COUNSELO
+       Category 1     Category 1        0.277       0.287            -0.011           -0.493
+       Category 1     Category 2        0.548       0.538             0.010            0.423
+       Category 2     Category 1        0.072       0.061             0.011            0.962
+       Category 2     Category 2        0.103       0.114            -0.010           -0.685
+     REPORT_D       PSYCH_FT
+       Category 1     Category 1        0.216       0.221            -0.004           -0.217
+       Category 1     Category 2        0.609       0.605             0.004            0.156
+       Category 2     Category 1        0.046       0.047             0.000           -0.022
+       Category 2     Category 2        0.129       0.128             0.001            0.056
+     REPORT_D       LAW_FTE
+       Category 1     Category 1        0.581       0.583            -0.003           -0.118
+       Category 1     Category 2        0.244       0.242             0.002            0.107
+       Category 2     Category 1        0.125       0.123             0.002            0.124
+       Category 2     Category 2        0.050       0.051            -0.001           -0.129
+     REPORT_R       REPORT_S
+       Category 1     Category 1        0.254       0.231             0.023            1.146
+       Category 1     Category 2        0.348       0.371            -0.023           -0.999
+       Category 2     Category 1        0.130       0.152            -0.023           -1.343
+       Category 2     Category 2        0.268       0.245             0.023            1.122
+     REPORT_R       COUNSELO
+       Category 1     Category 1        0.164       0.210            -0.046           -2.372
+       Category 1     Category 2        0.437       0.393             0.045            1.920
+       Category 2     Category 1        0.185       0.138             0.046            2.814
+       Category 2     Category 2        0.215       0.259            -0.045           -2.154
+     REPORT_R       PSYCH_FT
+       Category 1     Category 1        0.137       0.161            -0.024           -1.363
+       Category 1     Category 2        0.464       0.441             0.022            0.945
+       Category 2     Category 1        0.126       0.106             0.019            1.317
+       Category 2     Category 2        0.274       0.292            -0.018           -0.824
+     REPORT_R       LAW_FTE
+       Category 1     Category 1        0.412       0.426            -0.013           -0.570
+       Category 1     Category 2        0.189       0.177             0.012            0.665
+       Category 2     Category 1        0.294       0.281             0.013            0.588
+       Category 2     Category 2        0.105       0.117            -0.011           -0.737
+     REPORT_S       COUNSELO
+       Category 1     Category 1        0.133       0.133             0.000           -0.007
+       Category 1     Category 2        0.248       0.250            -0.002           -0.095
+       Category 2     Category 1        0.215       0.215             0.000            0.022
+       Category 2     Category 2        0.404       0.402             0.002            0.070
+     REPORT_S       PSYCH_FT
+       Category 1     Category 1        0.096       0.102            -0.006           -0.446
+       Category 1     Category 2        0.285       0.281             0.004            0.192
+       Category 2     Category 1        0.167       0.165             0.002            0.109
+       Category 2     Category 2        0.452       0.452             0.000            0.017
+     REPORT_S       LAW_FTE
+       Category 1     Category 1        0.261       0.271            -0.010           -0.489
+       Category 1     Category 2        0.121       0.112             0.008            0.552
+       Category 2     Category 1        0.445       0.436             0.010            0.404
+       Category 2     Category 2        0.173       0.181            -0.007           -0.408
+     COUNSELO       PSYCH_FT
+       Category 1     Category 1        0.104       0.093             0.011            0.833
+       Category 1     Category 2        0.244       0.255            -0.011           -0.547
+       Category 2     Category 1        0.163       0.174            -0.011           -0.638
+       Category 2     Category 2        0.489       0.478             0.011            0.478
+     COUNSELO       LAW_FTE
+       Category 1     Category 1        0.286       0.246             0.040            1.947
+       Category 1     Category 2        0.062       0.102            -0.040           -2.770
+       Category 2     Category 1        0.421       0.461            -0.040           -1.682
+       Category 2     Category 2        0.231       0.191             0.040            2.132
+     PSYCH_FT       LAW_FTE
+       Category 1     Category 1        0.208       0.189             0.019            1.043
+       Category 1     Category 2        0.059       0.078            -0.019           -1.519
+       Category 2     Category 1        0.498       0.518            -0.020           -0.822
+       Category 2     Category 2        0.234       0.215             0.020            1.000
+
+
+TECHNICAL 11 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 200
+        Number of final stage optimizations                   100
+
+
+
+     VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 1 (H0) VERSUS 2 CLASSES
+
+          H0 Loglikelihood Value                        -5443.409
+          2 Times the Loglikelihood Difference            498.546
+          Difference in the Number of Parameters                7
+          Mean                                             13.822
+          Standard Deviation                               13.632
+          P-Value                                          0.0000
+
+     LO-MENDELL-RUBIN ADJUSTED LRT TEST
+
+          Value                                           489.365
+          P-Value                                          0.0000
+
+
+TECHNICAL 14 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 200
+        Number of final stage optimizations                   100
+
+     Random Starts Specification for the k-1 Class Model for Generated Data
+        Number of initial stage random starts                   0
+        Number of final stage optimizations for the
+           initial stage random starts                          0
+     Random Starts Specification for the k Class Model for Generated Data
+        Number of initial stage random starts                  40
+        Number of final stage optimizations                     8
+     Number of bootstrap draws requested                   Varies
+
+
+     PARAMETRIC BOOTSTRAPPED LIKELIHOOD RATIO TEST FOR 1 (H0) VERSUS 2 CLASSES
+
+          H0 Loglikelihood Value                        -5443.409
+          2 Times the Loglikelihood Difference            498.546
+          Difference in the Number of Parameters                7
+          Approximate P-Value                              0.0000
+          Successful Bootstrap Draws                            5
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    savedata.dat
+
+  Order and format of variables
+
+    REPORT_D       F10.3
+    REPORT_R       F10.3
+    REPORT_S       F10.3
+    COUNSELO       F10.3
+    PSYCH_FT       F10.3
+    LAW_FTE        F10.3
+    CPROB1         F10.3
+    CPROB2         F10.3
+    C              F10.3
+
+  Save file format
+    9F10.3
+
+  Save file record length    10000
+
+  Save missing symbol        *
+
+
+  Response Patterns
+
+  Save file
+    resp_patterns.dat
+  Save format      Free
+
+  Order of information saved
+
+    Frequency
+    REPORT_DIS
+    REPORT_RACE
+    REPORT_SEX
+    COUNSELORS_FTE
+    PSYCH_FTE
+    LAW_FTE
+    CPROB1
+    CPROB2
+    C
+
+     Beginning Time:  13:23:45
+        Ending Time:  13:23:54
+       Elapsed Time:  00:00:09
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2022 Muthen & Muthen

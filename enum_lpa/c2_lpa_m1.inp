@@ -1,0 +1,16 @@
+TITLE:
+Class 2
+DATA:
+FILE = "C:/Users/dnajiarch/Box/IES_IMMERSE/Training Materials/lpa_enum/enum_lpa/lpa_pisa";
+ 
+VARIABLE:
+NAMES = broad_interest enjoyment instrumental_mot self_efficacy; 
+ MISSING=.;
+ usevar = broad_interest-self_efficacy;
+classes = c(2); 
+ANALYSIS:
+estimator = mlr; 
+    type = mixture;
+    starts = 100 20;
+OUTPUT:
+sampstat residual tech11 tech14;
