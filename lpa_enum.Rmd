@@ -268,7 +268,6 @@ enum_extract <- LatexSummaryTable(
 )
 
 allFit <- enum_extract %>%
-  mutate(aBIC = -2 * LL + Parameters * log((Observations + 2) / 24)) %>%
   mutate(CAIC = -2 * LL + Parameters * (log(Observations) + 1)) %>%
   mutate(AWE = -2 * LL + 2 * Parameters * (log(Observations) + 1.5)) %>%
   separate(Title, c("Model", "Class"), sep = "with") %>% 
