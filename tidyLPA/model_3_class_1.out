@@ -1,6 +1,6 @@
-Mplus VERSION 8.8
+Mplus VERSION 8.11
 MUTHEN & MUTHEN
-04/03/2023  10:24 AM
+10/31/2024   4:00 PM
 
 INPUT INSTRUCTIONS
 
@@ -8,7 +8,6 @@ INPUT INSTRUCTIONS
   model 3 with 1 classes
   DATA:
   FILE = "data_62339a89bd516bfbbc8576cfc6c62338.dat";
-
   VARIABLE:
   NAMES = broad_interest enjoyment instrumental_mot self_efficacy;
    MISSING=.;
@@ -16,7 +15,7 @@ INPUT INSTRUCTIONS
 
   ANALYSIS:
   TYPE = mixture;
-  starts = 100, 20;
+  starts = 500 100;
   MODEL:
   %c1#1%
   broad_interest (vbroad_interest);
@@ -34,7 +33,7 @@ INPUT INSTRUCTIONS
 
   OUTPUT:
   TECH14;
-
+  sampstat residual tech11 tech14
   SAVEDATA:
   FILE IS model_3_class_1.dat;
   SAVE = cprobabilities;
@@ -48,9 +47,12 @@ INPUT INSTRUCTIONS
   All variables are uncorrelated with all other variables within class.
   Check that this is what is intended.
 *** WARNING in OUTPUT command
+  TECH11 option is not available for TYPE=MIXTURE with only one class.
+  Request for TECH11 is ignored.
+*** WARNING in OUTPUT command
   TECH14 option is not available for TYPE=MIXTURE with only one class.
   Request for TECH14 is ignored.
-   3 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+   4 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
 
 
 
@@ -106,8 +108,8 @@ Maximum number of iterations for H1                           2000
 Convergence criterion for H1                             0.100D-03
 Optimization algorithm                                         EMA
 Random Starts Specifications
-  Number of initial stage random starts                        100
-  Number of final stage optimizations                           20
+  Number of initial stage random starts                        500
+  Number of final stage optimizations                          100
   Number of initial stage iterations                            10
   Initial stage convergence criterion                    0.100D+01
   Random starts scale                                    0.500D+01
@@ -142,6 +144,38 @@ Minimum covariance coverage value   0.100
  SELF_EFF       0.969         0.975         0.973         0.977
 
 
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                2.666         2.821         2.129         2.125
+
+
+           Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.595
+ ENJOYMEN       0.272         0.514
+ INSTRUME      -0.100        -0.171         0.560
+ SELF_EFF      -0.099        -0.145         0.095         0.414
+
+
+           Correlations
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       1.000
+ ENJOYMEN       0.492         1.000
+ INSTRUME      -0.173        -0.319         1.000
+ SELF_EFF      -0.199        -0.314         0.197         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -1968.348
+
 
 UNIVARIATE SAMPLE STATISTICS
 
@@ -164,25 +198,105 @@ RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
 
 Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
 
+           -1968.348  80438            246
            -1968.348  569131           26
+           -1968.348  691234           250
+           -1968.348  197223           332
+           -1968.348  618760           489
            -1968.348  443917           60
            -1968.348  637345           19
+           -1968.348  529496           343
            -1968.348  685657           69
+           -1968.348  12477            155
+           -1968.348  724519           333
+           -1968.348  965994           396
+           -1968.348  891531           206
+           -1968.348  316165           299
+           -1968.348  726035           191
+           -1968.348  714997           399
+           -1968.348  973369           202
            -1968.348  551639           55
+           -1968.348  195763           358
+           -1968.348  57226            208
+           -1968.348  505879           424
+           -1968.348  614535           449
+           -1968.348  17359            227
+           -1968.348  662718           460
+           -1968.348  345726           461
+           -1968.348  520177           262
+           -1968.348  358488           264
+           -1968.348  605565           404
+           -1968.348  292884           103
+           -1968.348  584397           428
+           -1968.348  631413           439
            -1968.348  754100           56
+           -1968.348  226322           478
            -1968.348  285380           1
+           -1968.348  23012            352
+           -1968.348  210870           383
+           -1968.348  748692           204
+           -1968.348  283492           435
+           -1968.348  217130           443
+           -1968.348  89970            223
+           -1968.348  714455           476
+           -1968.348  782821           272
+           -1968.348  741888           138
+           -1968.348  545140           278
+           -1968.348  692169           308
            -1968.348  415931           10
            -1968.348  848163           47
+           -1968.348  317640           437
+           -1968.348  595153           230
+           -1968.348  635245           121
+           -1968.348  814975           129
            -1968.348  626891           32
+           -1968.348  232559           136
+           -1968.348  930872           277
+           -1968.348  344422           296
            -1968.348  851945           18
            -1968.348  391179           78
+           -1968.348  193042           316
+           -1968.348  441191           361
            -1968.348  318230           46
+           -1968.348  263049           454
+           -1968.348  455617           242
+           -1968.348  335485           496
+           -1968.348  871851           257
+           -1968.348  580405           286
+           -1968.348  391949           295
            -1968.348  76337            76
+           -1968.348  821011           161
+           -1968.348  829540           324
+           -1968.348  297518           166
+           -1968.348  350608           334
+           -1968.348  82357            339
+           -1968.348  278692           342
            -1968.348  170954           86
+           -1968.348  485256           371
            -1968.348  533738           11
+           -1968.348  36714            201
+           -1968.348  937885           426
            -1968.348  915107           54
+           -1968.348  535804           111
+           -1968.348  188640           451
+           -1968.348  140442           500
+           -1968.348  794236           127
            -1968.348  227563           63
+           -1968.348  483369           270
            -1968.348  462953           7
+           -1968.348  534864           307
+           -1968.348  957392           79
+           -1968.348  217744           326
+           -1968.348  535063           329
+           -1968.348  609185           181
+           -1968.348  801717           364
+           -1968.348  848890           95
+           -1968.348  85114            385
+           -1968.348  124999           96
+           -1968.348  354208           196
+           -1968.348  923437           398
+           -1968.348  926797           406
+           -1968.348  746978           410
            -1968.348  unperturbed      0
 
 
@@ -301,6 +415,42 @@ QUALITY OF NUMERICAL RESULTS
        (ratio of smallest to largest eigenvalue)
 
 
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 1
+
+
+           Model Estimated Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                2.666         2.821         2.129         2.125
+
+
+           Residuals for Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                0.001        -0.001         0.000         0.000
+
+
+           Model Estimated Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.595
+ ENJOYMEN       0.272         0.514
+ INSTRUME      -0.100        -0.171         0.560
+ SELF_EFF      -0.099        -0.145         0.095         0.414
+
+
+           Residuals for Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.000
+ ENJOYMEN       0.009         0.000
+ INSTRUME       0.015         0.005         0.001
+ SELF_EFF       0.011         0.006         0.012         0.000
+
+
 SAVEDATA INFORMATION
 
 
@@ -324,9 +474,9 @@ SAVEDATA INFORMATION
   Save missing symbol        *
 
 
-     Beginning Time:  10:24:41
-        Ending Time:  10:24:41
-       Elapsed Time:  00:00:00
+     Beginning Time:  16:00:53
+        Ending Time:  16:00:54
+       Elapsed Time:  00:00:01
 
 
 
@@ -339,4 +489,4 @@ Fax: (310) 391-8971
 Web: www.StatModel.com
 Support: Support@StatModel.com
 
-Copyright (c) 1998-2022 Muthen & Muthen
+Copyright (c) 1998-2024 Muthen & Muthen

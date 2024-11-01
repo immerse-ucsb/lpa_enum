@@ -1,4 +1,5 @@
-plot_lpa_function <-
+
+plot_lpa <-
   function(model_name) {
     library(MplusAutomation)
     library(tidyverse)
@@ -28,7 +29,7 @@ plot_lpa_function <-
     
     plot_data <- pp_plots %>%
       dplyr::rename("param" = ncol(pp_plots)) %>%
-      melt(id.vars = "param") %>%
+      reshape2::melt(id.vars = "param") %>% 
       mutate(param = fct_inorder(param))
     
     name <- str_to_title(model_name$input$title) 

@@ -1,6 +1,6 @@
-Mplus VERSION 8.8
+Mplus VERSION 8.11
 MUTHEN & MUTHEN
-04/03/2023  10:23 AM
+10/31/2024   3:56 PM
 
 INPUT INSTRUCTIONS
 
@@ -8,7 +8,6 @@ INPUT INSTRUCTIONS
   model 1 with 4 classes
   DATA:
   FILE = "data_62339a89bd516bfbbc8576cfc6c62338.dat";
-
   VARIABLE:
   NAMES = broad_interest enjoyment instrumental_mot self_efficacy;
    MISSING=.;
@@ -16,7 +15,7 @@ INPUT INSTRUCTIONS
 
   ANALYSIS:
   TYPE = mixture;
-  starts = 100, 20;
+  starts = 500 100;
   MODEL:
   %c1#1%
   broad_interest (vbroad_interest);
@@ -73,7 +72,7 @@ INPUT INSTRUCTIONS
 
   OUTPUT:
   TECH14;
-
+  sampstat residual tech11 tech14
   SAVEDATA:
   FILE IS model_1_class_4.dat;
   SAVE = cprobabilities;
@@ -142,8 +141,8 @@ Maximum number of iterations for H1                           2000
 Convergence criterion for H1                             0.100D-03
 Optimization algorithm                                         EMA
 Random Starts Specifications
-  Number of initial stage random starts                        100
-  Number of final stage optimizations                           20
+  Number of initial stage random starts                        500
+  Number of final stage optimizations                          100
   Number of initial stage iterations                            10
   Initial stage convergence criterion                    0.100D+01
   Random starts scale                                    0.500D+01
@@ -178,6 +177,38 @@ Minimum covariance coverage value   0.100
  SELF_EFF       0.969         0.975         0.973         0.977
 
 
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                2.666         2.821         2.129         2.125
+
+
+           Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.595
+ ENJOYMEN       0.272         0.514
+ INSTRUME      -0.100        -0.171         0.560
+ SELF_EFF      -0.099        -0.145         0.095         0.414
+
+
+           Correlations
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       1.000
+ ENJOYMEN       0.492         1.000
+ INSTRUME      -0.173        -0.319         1.000
+ SELF_EFF      -0.199        -0.314         0.197         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -1968.348
+
 
 UNIVARIATE SAMPLE STATISTICS
 
@@ -201,26 +232,54 @@ RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
 Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
 
            -1889.426  813779           92
+           -1889.426  345726           461
+           -1889.426  359578           458
+           -1889.426  582296           452
+           -1889.426  456213           160
+           -1889.426  978061           488
+           -1889.426  726035           191
+           -1889.426  509733           130
+           -1889.426  926797           406
+           -1889.426  930872           277
+           -1889.426  383986           159
+           -1889.426  860102           495
+           -1889.426  587946           120
+           -1889.426  370466           41
+           -1889.426  996231           310
+           -1889.426  188498           258
            -1889.426  124999           96
            -1889.426  467339           66
            -1889.426  987090           70
-           -1939.662  966014           37
-           -1939.662  314084           81
+           -1889.426  563002           360
+           -1889.426  73576            213
+           -1889.426  471040           403
+           -1889.426  301180           236
+           -1889.426  215353           164
+           -1939.662  654136           167
+           -1939.662  132336           362
+           -1939.662  741888           138
+           -1939.662  499150           216
+           -1939.662  354624           448
+           -1939.662  377504           294
+           -1939.662  238906           430
+           -1939.662  416463           467
+           -1939.662  717754           180
            -1939.662  247224           94
+           -1939.662  479273           156
            -1939.662  903420           5
            -1939.662  848163           47
-           -1941.550  603842           61
-           -1941.550  354559           73
-           -1941.550  260601           36
+           -1939.662  714997           399
+           -1939.662  972873           157
            -1941.550  565819           65
-           -1941.550  963053           43
-           -1942.980  992389           77
            -1942.980  127215           9
            -1942.980  696773           80
            -1942.980  170954           86
+           -1942.980  694303           282
            -1942.980  341041           34
+           -1942.980  788796           145
+           -1951.517  539751           459
 
-1 perturbed starting value run(s) did not converge or were rejected in the third stage.
+53 perturbed starting value run(s) did not converge or were rejected in the third stage.
 
 
 
@@ -450,11 +509,169 @@ QUALITY OF NUMERICAL RESULTS
        (ratio of smallest to largest eigenvalue)
 
 
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 1
+
+
+           Model Estimated Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                2.793         2.930         2.093         2.121
+
+
+           Residuals for Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           Model Estimated Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.440
+ ENJOYMEN       0.000         0.050
+ INSTRUME       0.000         0.000         0.500
+ SELF_EFF       0.000         0.000         0.000         0.369
+
+
+           Residuals for Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN      -0.062
+ ENJOYMEN       0.019        -0.003
+ INSTRUME       0.023        -0.008        -0.068
+ SELF_EFF      -0.003        -0.006         0.046        -0.029
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 2
+
+
+           Model Estimated Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                3.175         3.862         1.746         1.741
+
+
+           Residuals for Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           Model Estimated Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.440
+ ENJOYMEN       0.000         0.050
+ INSTRUME       0.000         0.000         0.500
+ SELF_EFF       0.000         0.000         0.000         0.369
+
+
+           Residuals for Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.021
+ ENJOYMEN       0.019        -0.011
+ INSTRUME       0.085         0.022         0.135
+ SELF_EFF      -0.019        -0.001         0.001        -0.037
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 3
+
+
+           Model Estimated Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                2.136         2.143         2.378         2.378
+
+
+           Residuals for Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           Model Estimated Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.440
+ ENJOYMEN       0.000         0.050
+ INSTRUME       0.000         0.000         0.500
+ SELF_EFF       0.000         0.000         0.000         0.369
+
+
+           Residuals for Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.023
+ ENJOYMEN      -0.022         0.018
+ INSTRUME      -0.060        -0.005        -0.095
+ SELF_EFF       0.004        -0.009         0.106         0.062
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 4
+
+
+           Model Estimated Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                1.832         1.166         2.700         2.419
+
+
+           Residuals for Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           Model Estimated Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.440
+ ENJOYMEN       0.000         0.050
+ INSTRUME       0.000         0.000         0.500
+ SELF_EFF       0.000         0.000         0.000         0.369
+
+
+           Residuals for Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.413
+ ENJOYMEN       0.024         0.003
+ INSTRUME      -0.057         0.022         0.513
+ SELF_EFF      -0.092        -0.008         0.140         0.157
+
+
+TECHNICAL 11 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 500
+        Number of final stage optimizations                   100
+
+
+
+     VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 3 (H0) VERSUS 4 CLASSES
+
+          H0 Loglikelihood Value                        -1952.978
+          2 Times the Loglikelihood Difference            127.104
+          Difference in the Number of Parameters                5
+          Mean                                              1.680
+          Standard Deviation                               21.229
+          P-Value                                          0.0000
+
+     LO-MENDELL-RUBIN ADJUSTED LRT TEST
+
+          Value                                           123.126
+          P-Value                                          0.0000
+
+
 TECHNICAL 14 OUTPUT
 
      Random Starts Specifications for the k-1 Class Analysis Model
-        Number of initial stage random starts                 100
-        Number of final stage optimizations                    20
+        Number of initial stage random starts                 500
+        Number of final stage optimizations                   100
 
      Random Starts Specification for the k-1 Class Model for Generated Data
         Number of initial stage random starts                   0
@@ -507,9 +724,9 @@ SAVEDATA INFORMATION
   Save missing symbol        *
 
 
-     Beginning Time:  10:23:28
-        Ending Time:  10:23:36
-       Elapsed Time:  00:00:08
+     Beginning Time:  15:56:55
+        Ending Time:  15:57:25
+       Elapsed Time:  00:00:30
 
 
 
@@ -522,4 +739,4 @@ Fax: (310) 391-8971
 Web: www.StatModel.com
 Support: Support@StatModel.com
 
-Copyright (c) 1998-2022 Muthen & Muthen
+Copyright (c) 1998-2024 Muthen & Muthen

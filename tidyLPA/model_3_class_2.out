@@ -1,6 +1,6 @@
-Mplus VERSION 8.8
+Mplus VERSION 8.11
 MUTHEN & MUTHEN
-04/03/2023  10:24 AM
+10/31/2024   4:00 PM
 
 INPUT INSTRUCTIONS
 
@@ -8,7 +8,6 @@ INPUT INSTRUCTIONS
   model 3 with 2 classes
   DATA:
   FILE = "data_62339a89bd516bfbbc8576cfc6c62338.dat";
-
   VARIABLE:
   NAMES = broad_interest enjoyment instrumental_mot self_efficacy;
    MISSING=.;
@@ -16,7 +15,7 @@ INPUT INSTRUCTIONS
 
   ANALYSIS:
   TYPE = mixture;
-  starts = 100, 20;
+  starts = 500 100;
   MODEL:
   %c1#1%
   broad_interest (vbroad_interest);
@@ -47,7 +46,7 @@ INPUT INSTRUCTIONS
 
   OUTPUT:
   TECH14;
-
+  sampstat residual tech11 tech14
   SAVEDATA:
   FILE IS model_3_class_2.dat;
   SAVE = cprobabilities;
@@ -116,8 +115,8 @@ Maximum number of iterations for H1                           2000
 Convergence criterion for H1                             0.100D-03
 Optimization algorithm                                         EMA
 Random Starts Specifications
-  Number of initial stage random starts                        100
-  Number of final stage optimizations                           20
+  Number of initial stage random starts                        500
+  Number of final stage optimizations                          100
   Number of initial stage iterations                            10
   Initial stage convergence criterion                    0.100D+01
   Random starts scale                                    0.500D+01
@@ -152,6 +151,38 @@ Minimum covariance coverage value   0.100
  SELF_EFF       0.969         0.975         0.973         0.977
 
 
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                2.666         2.821         2.129         2.125
+
+
+           Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.595
+ ENJOYMEN       0.272         0.514
+ INSTRUME      -0.100        -0.171         0.560
+ SELF_EFF      -0.099        -0.145         0.095         0.414
+
+
+           Correlations
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       1.000
+ ENJOYMEN       0.492         1.000
+ INSTRUME      -0.173        -0.319         1.000
+ SELF_EFF      -0.199        -0.314         0.197         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -1968.348
+
 
 UNIVARIATE SAMPLE STATISTICS
 
@@ -174,20 +205,59 @@ RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
 
 Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
 
+           -1950.111  888905           444
            -1950.111  848163           47
            -1950.111  966014           37
+           -1950.111  608460           244
+           -1950.111  275475           413
+           -1950.111  178475           231
+           -1950.111  301180           236
+           -1950.111  848969           173
+           -1950.111  100874           108
+           -1950.111  520177           262
            -1950.111  544048           87
+           -1950.111  281558           184
+           -1950.111  871851           257
+           -1950.111  153053           378
            -1950.111  576596           99
+           -1950.111  563002           360
            -1950.111  608496           4
            -1950.111  851945           18
+           -1950.111  922042           492
+           -1950.111  182524           373
            -1950.111  804561           59
+           -1950.111  165853           105
+           -1950.111  210870           383
            -1950.111  957392           79
+           -1950.111  73576            213
+           -1950.111  264935           281
+           -1950.111  315029           471
            -1950.111  723775           97
+           -1950.111  780698           337
+           -1950.111  741888           138
+           -1950.111  798821           423
+           -1950.111  499150           216
+           -1950.111  801717           364
+           -1950.111  137377           397
+           -1950.111  928287           197
            -1950.111  432148           30
+           -1951.821  621542           375
+           -1951.821  112586           494
+           -1951.821  965994           396
+           -1951.821  462228           298
+           -1951.821  164305           128
+           -1951.821  863094           147
+           -1951.821  618000           190
+           -1951.821  587946           120
+           -1951.821  830529           279
+           -1951.821  579995           183
+           -1955.197  913639           162
+           -1955.197  349263           263
            -1955.197  247224           94
            -1955.197  569833           85
+           -1955.197  484687           306
 
-8 perturbed starting value run(s) did not converge or were rejected in the third stage.
+49 perturbed starting value run(s) did not converge or were rejected in the third stage.
 
 
 
@@ -224,8 +294,8 @@ BASED ON THE ESTIMATED MODEL
     Latent
    Classes
 
-       1        470.91709          0.96499
-       2         17.08291          0.03501
+       1        470.91711          0.96499
+       2         17.08289          0.03501
 
 
 FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
@@ -234,8 +304,8 @@ BASED ON ESTIMATED POSTERIOR PROBABILITIES
     Latent
    Classes
 
-       1        470.91709          0.96499
-       2         17.08291          0.03501
+       1        470.91711          0.96499
+       2         17.08289          0.03501
 
 
 FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
@@ -330,7 +400,7 @@ Latent Class 2
  Means
     BROAD_INTE         3.221      0.270     11.934      0.000
     ENJOYMENT          3.272      0.261     12.558      0.000
-    INSTRUMENT         3.752      0.098     38.149      0.000
+    INSTRUMENT         3.752      0.098     38.150      0.000
     SELF_EFFIC         1.760      0.184      9.587      0.000
 
  Variances
@@ -351,11 +421,103 @@ QUALITY OF NUMERICAL RESULTS
        (ratio of smallest to largest eigenvalue)
 
 
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 1
+
+
+           Model Estimated Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                2.645         2.805         2.070         2.138
+
+
+           Residuals for Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                0.001        -0.001         0.000         0.001
+
+
+           Model Estimated Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.584
+ ENJOYMEN       0.263         0.507
+ INSTRUME      -0.133        -0.198         0.464
+ SELF_EFF      -0.091        -0.139         0.117         0.409
+
+
+           Residuals for Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN      -0.001
+ ENJOYMEN       0.011         0.003
+ INSTRUME       0.009        -0.001         0.010
+ SELF_EFF       0.013         0.010         0.013         0.004
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 2
+
+
+           Model Estimated Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                3.221         3.272         3.752         1.760
+
+
+           Residuals for Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                0.002         0.000        -0.002        -0.001
+
+
+           Model Estimated Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.584
+ ENJOYMEN       0.263         0.507
+ INSTRUME      -0.133        -0.198         0.464
+ SELF_EFF      -0.091        -0.139         0.117         0.409
+
+
+           Residuals for Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.031
+ ENJOYMEN      -0.057        -0.095
+ INSTRUME       0.137         0.158        -0.242
+ SELF_EFF      -0.043        -0.100        -0.055        -0.119
+
+
+TECHNICAL 11 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 500
+        Number of final stage optimizations                   100
+
+
+
+     VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 1 (H0) VERSUS 2 CLASSES
+
+          H0 Loglikelihood Value                        -1968.348
+          2 Times the Loglikelihood Difference             36.474
+          Difference in the Number of Parameters                5
+          Mean                                              4.577
+          Standard Deviation                                7.514
+          P-Value                                          0.0015
+
+     LO-MENDELL-RUBIN ADJUSTED LRT TEST
+
+          Value                                            35.333
+          P-Value                                          0.0018
+
+
 TECHNICAL 14 OUTPUT
 
      Random Starts Specifications for the k-1 Class Analysis Model
-        Number of initial stage random starts                 100
-        Number of final stage optimizations                    20
+        Number of initial stage random starts                 500
+        Number of final stage optimizations                   100
 
      Random Starts Specification for the k-1 Class Model for Generated Data
         Number of initial stage random starts                   0
@@ -400,9 +562,9 @@ SAVEDATA INFORMATION
   Save missing symbol        *
 
 
-     Beginning Time:  10:24:42
-        Ending Time:  10:24:46
-       Elapsed Time:  00:00:04
+     Beginning Time:  16:00:55
+        Ending Time:  16:01:07
+       Elapsed Time:  00:00:12
 
 
 
@@ -415,4 +577,4 @@ Fax: (310) 391-8971
 Web: www.StatModel.com
 Support: Support@StatModel.com
 
-Copyright (c) 1998-2022 Muthen & Muthen
+Copyright (c) 1998-2024 Muthen & Muthen

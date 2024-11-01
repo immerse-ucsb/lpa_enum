@@ -1,14 +1,14 @@
-Mplus VERSION 8.8
+Mplus VERSION 8.11
 MUTHEN & MUTHEN
-04/03/2023  10:32 AM
+10/31/2024   4:53 PM
 
 INPUT INSTRUCTIONS
 
   TITLE:
-  Class 1
+  Profile 1
   DATA:
-  FILE = "C:/Users/dnajiarch/Box/IES_IMMERSE/Training Materials/lpa_enum/enum_lpa/lpa_pisa";
-
+  FILE = "C:/Users/dnajiarch/Box/IES_IMMERSE/youtube_materials/lpa_enum/
+  enum_lpa/lpa_pisa";
   VARIABLE:
   NAMES = broad_interest enjoyment instrumental_mot self_efficacy;
    MISSING=.;
@@ -17,9 +17,9 @@ INPUT INSTRUCTIONS
   ANALYSIS:
   estimator = mlr;
       type = mixture;
-      starts = 100 20;
+      starts = 500 100;
   OUTPUT:
-  sampstat residual tech11 tech14;
+  sampstat svalues residual tech11 tech14;
 
 
 
@@ -44,7 +44,7 @@ INPUT INSTRUCTIONS
 
 
 
-Class 1
+Profile 1
 
 SUMMARY OF ANALYSIS
 
@@ -95,15 +95,15 @@ Maximum number of iterations for H1                           2000
 Convergence criterion for H1                             0.100D-03
 Optimization algorithm                                         EMA
 Random Starts Specifications
-  Number of initial stage random starts                        100
-  Number of final stage optimizations                           20
+  Number of initial stage random starts                        500
+  Number of final stage optimizations                          100
   Number of initial stage iterations                            10
   Initial stage convergence criterion                    0.100D+01
   Random starts scale                                    0.500D+01
   Random seed for generating random starts                       0
 
 Input data file(s)
-  C:/Users/dnajiarch/Box/IES_IMMERSE/Training Materials/lpa_enum/enum_lpa/lpa_pi
+  C:/Users/dnajiarch/Box/IES_IMMERSE/youtube_materials/lpa_enum/enum_lpa/lpa_pis
 Input data format  FREE
 
 
@@ -185,25 +185,105 @@ RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
 
 Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
 
+           -2088.659  374219           353
+           -2088.659  153053           378
+           -2088.659  937885           426
+           -2088.659  636396           168
+           -2088.659  281558           184
+           -2088.659  618000           190
+           -2088.659  399380           436
+           -2088.659  769907           457
+           -2088.659  156536           245
+           -2088.659  602797           336
+           -2088.659  418686           338
+           -2088.659  407168           44
            -2088.659  372176           23
+           -2088.659  165853           105
+           -2088.659  404510           442
+           -2088.659  354624           448
+           -2088.659  871851           257
+           -2088.659  217744           326
+           -2088.659  728038           177
+           -2088.659  137305           379
+           -2088.659  399508           415
+           -2088.659  802682           419
+           -2088.659  89970            223
+           -2088.659  879211           453
+           -2088.659  315029           471
+           -2088.659  335485           496
+           -2088.659  930872           277
            -2088.659  475420           71
+           -2088.659  344422           296
            -2088.659  569833           85
+           -2088.659  404426           344
+           -2088.659  354208           196
            -2088.659  903420           5
+           -2088.659  399848           220
+           -2088.659  263049           454
+           -2088.659  345070           114
+           -2088.659  898745           466
+           -2088.659  59674            240
            -2088.659  153942           31
+           -2088.659  794236           127
+           -2088.659  391949           295
+           -2088.659  567165           319
            -2088.659  696773           80
+           -2088.659  173440           328
+           -2088.659  319144           176
+           -2088.659  793035           187
+           -2088.659  415502           194
+           -2088.659  146900           391
+           -2088.659  700349           401
+           -2088.659  926797           406
+           -2088.659  30098            209
            -2088.659  569131           26
+           -2088.659  499150           216
+           -2088.659  502532           445
            -2088.659  195873           6
+           -2088.659  609089           241
+           -2088.659  691234           250
            -2088.659  422103           62
+           -2088.659  782821           272
            -2088.659  784664           75
+           -2088.659  821011           161
+           -2088.659  801717           364
+           -2088.659  22362            365
+           -2088.659  777045           377
+           -2088.659  40340            188
+           -2088.659  458181           189
+           -2088.659  637095           207
+           -2088.659  568405           233
            -2088.659  789985           67
+           -2088.659  215353           164
+           -2088.659  726035           191
            -2088.659  761633           50
+           -2088.659  772131           407
+           -2088.659  835767           210
+           -2088.659  66276            217
            -2088.659  915107           54
+           -2088.659  971693           470
+           -2088.659  617243           237
+           -2088.659  358488           264
+           -2088.659  512836           289
+           -2088.659  369602           146
+           -2088.659  849670           347
+           -2088.659  875667           367
            -2088.659  967237           48
+           -2088.659  971853           402
+           -2088.659  605161           409
+           -2088.659  791285           416
+           -2088.659  988761           475
+           -2088.659  802256           477
+           -2088.659  652266           490
+           -2088.659  616917           261
+           -2088.659  281462           285
+           -2088.659  316165           299
            -2088.659  314084           81
+           -2088.659  724519           333
            -2088.659  370466           41
-           -2088.659  603842           61
-           -2088.659  253358           2
-           -2088.659  136842           58
+           -2088.659  411615           171
+           -2088.659  830570           369
+           -2088.659  283492           435
            -2088.659  unperturbed      0
 
 
@@ -310,6 +390,24 @@ QUALITY OF NUMERICAL RESULTS
        (ratio of smallest to largest eigenvalue)
 
 
+MODEL COMMAND WITH FINAL ESTIMATES USED AS STARTING VALUES
+
+     %OVERALL%
+
+     %C#1%
+
+     [ broad_interest*2.66646 ];
+     [ enjoyment*2.81986 ];
+     [ instrumental_mot*2.12857 ];
+     [ self_efficacy*2.12500 ];
+
+     broad_interest*0.59504;
+     enjoyment*0.51402;
+     instrumental_mot*0.56099;
+     self_efficacy*0.41403;
+
+
+
 RESIDUAL OUTPUT
 
 
@@ -346,8 +444,8 @@ RESIDUAL OUTPUT
  SELF_EFF      -0.088        -0.139         0.107         0.000
 
 
-     Beginning Time:  10:32:21
-        Ending Time:  10:32:22
+     Beginning Time:  16:53:22
+        Ending Time:  16:53:23
        Elapsed Time:  00:00:01
 
 
@@ -361,4 +459,4 @@ Fax: (310) 391-8971
 Web: www.StatModel.com
 Support: Support@StatModel.com
 
-Copyright (c) 1998-2022 Muthen & Muthen
+Copyright (c) 1998-2024 Muthen & Muthen

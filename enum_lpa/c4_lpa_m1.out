@@ -1,14 +1,14 @@
-Mplus VERSION 8.8
+Mplus VERSION 8.11
 MUTHEN & MUTHEN
-04/03/2023  10:32 AM
+10/31/2024   4:53 PM
 
 INPUT INSTRUCTIONS
 
   TITLE:
-  Class 4
+  Profile 4
   DATA:
-  FILE = "C:/Users/dnajiarch/Box/IES_IMMERSE/Training Materials/lpa_enum/enum_lpa/lpa_pisa";
-
+  FILE = "C:/Users/dnajiarch/Box/IES_IMMERSE/youtube_materials/lpa_enum/
+  enum_lpa/lpa_pisa";
   VARIABLE:
   NAMES = broad_interest enjoyment instrumental_mot self_efficacy;
    MISSING=.;
@@ -17,9 +17,9 @@ INPUT INSTRUCTIONS
   ANALYSIS:
   estimator = mlr;
       type = mixture;
-      starts = 100 20;
+      starts = 500 100;
   OUTPUT:
-  sampstat residual tech11 tech14;
+  sampstat svalues residual tech11 tech14;
 
 
 
@@ -38,7 +38,7 @@ INPUT INSTRUCTIONS
 
 
 
-Class 4
+Profile 4
 
 SUMMARY OF ANALYSIS
 
@@ -89,15 +89,15 @@ Maximum number of iterations for H1                           2000
 Convergence criterion for H1                             0.100D-03
 Optimization algorithm                                         EMA
 Random Starts Specifications
-  Number of initial stage random starts                        100
-  Number of final stage optimizations                           20
+  Number of initial stage random starts                        500
+  Number of final stage optimizations                          100
   Number of initial stage iterations                            10
   Initial stage convergence criterion                    0.100D+01
   Random starts scale                                    0.500D+01
   Random seed for generating random starts                       0
 
 Input data file(s)
-  C:/Users/dnajiarch/Box/IES_IMMERSE/Training Materials/lpa_enum/enum_lpa/lpa_pi
+  C:/Users/dnajiarch/Box/IES_IMMERSE/youtube_materials/lpa_enum/enum_lpa/lpa_pis
 Input data format  FREE
 
 
@@ -180,26 +180,54 @@ RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
 Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
 
            -1889.426  813779           92
+           -1889.426  345726           461
+           -1889.426  359578           458
+           -1889.426  582296           452
+           -1889.426  456213           160
+           -1889.426  978061           488
+           -1889.426  726035           191
+           -1889.426  509733           130
+           -1889.426  926797           406
+           -1889.426  930872           277
+           -1889.426  383986           159
+           -1889.426  860102           495
+           -1889.426  587946           120
+           -1889.426  370466           41
+           -1889.426  996231           310
+           -1889.426  188498           258
            -1889.426  124999           96
            -1889.426  467339           66
            -1889.426  987090           70
-           -1939.662  966014           37
-           -1939.662  314084           81
+           -1889.426  563002           360
+           -1889.426  73576            213
+           -1889.426  471040           403
+           -1889.426  301180           236
+           -1889.426  215353           164
+           -1939.662  654136           167
+           -1939.662  132336           362
+           -1939.662  741888           138
+           -1939.662  499150           216
+           -1939.662  354624           448
+           -1939.662  377504           294
+           -1939.662  238906           430
+           -1939.662  416463           467
+           -1939.662  717754           180
            -1939.662  247224           94
+           -1939.662  479273           156
            -1939.662  903420           5
            -1939.662  848163           47
-           -1941.550  603842           61
-           -1941.550  354559           73
-           -1941.550  260601           36
+           -1939.662  714997           399
+           -1939.662  972873           157
            -1941.550  565819           65
-           -1941.550  963053           43
-           -1942.980  992389           77
            -1942.980  127215           9
            -1942.980  696773           80
            -1942.980  170954           86
+           -1942.980  694303           282
            -1942.980  341041           34
+           -1942.980  788796           145
+           -1951.517  539751           459
 
-1 perturbed starting value run(s) did not converge or were rejected in the third stage.
+53 perturbed starting value run(s) did not converge or were rejected in the third stage.
 
 
 
@@ -381,6 +409,64 @@ QUALITY OF NUMERICAL RESULTS
        (ratio of smallest to largest eigenvalue)
 
 
+MODEL COMMAND WITH FINAL ESTIMATES USED AS STARTING VALUES
+
+     %OVERALL%
+
+     [ c#1*2.17691 ];
+     [ c#2*1.02640 ];
+     [ c#3*1.18185 ];
+
+     %C#1%
+
+     [ broad_interest*2.79255 ];
+     [ enjoyment*2.93008 ];
+     [ instrumental_mot*2.09337 ];
+     [ self_efficacy*2.12075 ];
+
+     broad_interest*0.43972 (5);
+     enjoyment*0.04980 (6);
+     instrumental_mot*0.50043 (7);
+     self_efficacy*0.36941 (8);
+
+     %C#2%
+
+     [ broad_interest*3.17548 ];
+     [ enjoyment*3.86207 ];
+     [ instrumental_mot*1.74592 ];
+     [ self_efficacy*1.74058 ];
+
+     broad_interest*0.43972 (5);
+     enjoyment*0.04980 (6);
+     instrumental_mot*0.50043 (7);
+     self_efficacy*0.36941 (8);
+
+     %C#3%
+
+     [ broad_interest*2.13650 ];
+     [ enjoyment*2.14318 ];
+     [ instrumental_mot*2.37813 ];
+     [ self_efficacy*2.37763 ];
+
+     broad_interest*0.43972 (5);
+     enjoyment*0.04980 (6);
+     instrumental_mot*0.50043 (7);
+     self_efficacy*0.36941 (8);
+
+     %C#4%
+
+     [ broad_interest*1.83167 ];
+     [ enjoyment*1.16608 ];
+     [ instrumental_mot*2.70000 ];
+     [ self_efficacy*2.41857 ];
+
+     broad_interest*0.43972 (5);
+     enjoyment*0.04980 (6);
+     instrumental_mot*0.50043 (7);
+     self_efficacy*0.36941 (8);
+
+
+
 RESIDUAL OUTPUT
 
 
@@ -519,8 +605,8 @@ RESIDUAL OUTPUT
 TECHNICAL 11 OUTPUT
 
      Random Starts Specifications for the k-1 Class Analysis Model
-        Number of initial stage random starts                 100
-        Number of final stage optimizations                    20
+        Number of initial stage random starts                 500
+        Number of final stage optimizations                   100
 
 
 
@@ -542,8 +628,8 @@ TECHNICAL 11 OUTPUT
 TECHNICAL 14 OUTPUT
 
      Random Starts Specifications for the k-1 Class Analysis Model
-        Number of initial stage random starts                 100
-        Number of final stage optimizations                    20
+        Number of initial stage random starts                 500
+        Number of final stage optimizations                   100
 
      Random Starts Specification for the k-1 Class Model for Generated Data
         Number of initial stage random starts                   0
@@ -570,9 +656,9 @@ TECHNICAL 14 OUTPUT
 
 
 
-     Beginning Time:  10:32:33
-        Ending Time:  10:32:41
-       Elapsed Time:  00:00:08
+     Beginning Time:  16:53:52
+        Ending Time:  16:54:21
+       Elapsed Time:  00:00:29
 
 
 
@@ -585,4 +671,4 @@ Fax: (310) 391-8971
 Web: www.StatModel.com
 Support: Support@StatModel.com
 
-Copyright (c) 1998-2022 Muthen & Muthen
+Copyright (c) 1998-2024 Muthen & Muthen

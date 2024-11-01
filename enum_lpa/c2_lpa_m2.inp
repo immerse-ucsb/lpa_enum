@@ -1,8 +1,8 @@
 TITLE:
-Class 2 - Model2
+Profile 2 - Model 2
 DATA:
-FILE = "C:/Users/dnajiarch/Box/IES_IMMERSE/Training Materials/lpa_enum/enum_lpa/lpa_pisa";
- 
+FILE = "C:/Users/dnajiarch/Box/IES_IMMERSE/youtube_materials/lpa_enum/
+enum_lpa/lpa_pisa"; 
 VARIABLE:
 NAMES = broad_interest enjoyment instrumental_mot self_efficacy; 
  MISSING=.;
@@ -11,15 +11,11 @@ classes = c(2);
 ANALYSIS:
 estimator = mlr; 
     type = mixture;
-    starts = 100 20;
+    starts = 500 100;
 MODEL:
- 
- %c#1%
+%c#1%
 broad_interest-self_efficacy;      ! variances are freely estimated
-
- 
- %c#2%
+%c#2%
 broad_interest-self_efficacy;      ! variances are freely estimated
-
 OUTPUT:
-sampstat residual tech11 tech14;
+sampstat svalues residual tech11 tech14;

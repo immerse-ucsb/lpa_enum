@@ -1,14 +1,14 @@
-Mplus VERSION 8.8
+Mplus VERSION 8.11
 MUTHEN & MUTHEN
-04/03/2023  10:32 AM
+10/31/2024   4:53 PM
 
 INPUT INSTRUCTIONS
 
   TITLE:
-  Class 2
+  Profile 2
   DATA:
-  FILE = "C:/Users/dnajiarch/Box/IES_IMMERSE/Training Materials/lpa_enum/enum_lpa/lpa_pisa";
-
+  FILE = "C:/Users/dnajiarch/Box/IES_IMMERSE/youtube_materials/lpa_enum/
+  enum_lpa/lpa_pisa";
   VARIABLE:
   NAMES = broad_interest enjoyment instrumental_mot self_efficacy;
    MISSING=.;
@@ -17,9 +17,9 @@ INPUT INSTRUCTIONS
   ANALYSIS:
   estimator = mlr;
       type = mixture;
-      starts = 100 20;
+      starts = 500 100;
   OUTPUT:
-  sampstat residual tech11 tech14;
+  sampstat svalues residual tech11 tech14;
 
 
 
@@ -38,7 +38,7 @@ INPUT INSTRUCTIONS
 
 
 
-Class 2
+Profile 2
 
 SUMMARY OF ANALYSIS
 
@@ -89,15 +89,15 @@ Maximum number of iterations for H1                           2000
 Convergence criterion for H1                             0.100D-03
 Optimization algorithm                                         EMA
 Random Starts Specifications
-  Number of initial stage random starts                        100
-  Number of final stage optimizations                           20
+  Number of initial stage random starts                        500
+  Number of final stage optimizations                          100
   Number of initial stage iterations                            10
   Initial stage convergence criterion                    0.100D+01
   Random starts scale                                    0.500D+01
   Random seed for generating random starts                       0
 
 Input data file(s)
-  C:/Users/dnajiarch/Box/IES_IMMERSE/Training Materials/lpa_enum/enum_lpa/lpa_pi
+  C:/Users/dnajiarch/Box/IES_IMMERSE/youtube_materials/lpa_enum/enum_lpa/lpa_pis
 Input data format  FREE
 
 
@@ -180,25 +180,105 @@ RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
 Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
 
            -1996.513  314084           81
+           -1996.513  340112           126
+           -1996.513  202790           198
+           -1996.513  321390           133
            -1996.513  405079           68
            -1996.513  749453           33
+           -1996.513  626087           314
            -1996.513  341041           34
+           -1996.513  188498           258
+           -1996.513  375590           438
+           -1996.513  399380           436
+           -1996.513  608849           224
+           -1996.513  518828           432
+           -1996.513  625191           350
            -1996.513  195873           6
            -1996.513  352277           42
            -1996.513  407168           44
+           -1996.513  830570           369
+           -1996.513  55115            408
+           -1996.513  178475           231
+           -1996.513  440841           118
+           -1996.513  399848           220
+           -1996.513  455617           242
+           -1996.513  688839           273
+           -1996.513  863094           147
+           -1996.513  840031           276
+           -1996.513  50887            389
+           -1996.513  746978           410
            -1996.513  366706           29
+           -1996.513  856536           144
+           -1996.513  441191           361
            -1996.513  347515           24
+           -1996.513  903369           134
+           -1996.513  217744           326
+           -1996.513  849670           347
+           -1996.513  728038           177
+           -1996.513  156536           245
+           -1996.513  89970            223
+           -1996.513  978781           497
+           -1996.513  476498           179
+           -1996.513  193847           354
+           -1996.513  695155           150
+           -1996.513  100874           108
+           -1996.513  499150           216
+           -1996.513  286735           175
+           -1996.513  715561           125
+           -1996.513  268217           83
            -1996.513  259507           53
+           -1996.513  694303           282
+           -1996.513  344422           296
+           -1996.513  1548             384
+           -1996.513  366533           484
+           -1996.513  848969           173
+           -1996.513  789985           67
+           -1996.513  584397           428
+           -1996.513  622860           259
+           -1996.513  387701           275
+           -1996.513  7959             256
+           -1996.513  65651            214
            -1996.513  685657           69
+           -1996.513  535804           111
+           -1996.513  579995           183
            -1996.513  603842           61
+           -1996.513  760878           249
+           -1996.513  34346            330
            -1996.513  285380           1
+           -1996.513  985387           381
            -1996.513  93468            3
+           -1996.513  871722           355
+           -1996.513  372176           23
+           -1996.513  92689            304
+           -1996.513  404510           442
+           -1996.513  794236           127
+           -1996.513  153053           378
+           -1996.513  264935           281
+           -1996.513  592219           119
+           -1996.513  970689           266
            -1996.513  391179           78
+           -1996.513  376411           473
+           -1996.513  802256           477
            -1996.513  576596           99
+           -1996.513  580405           286
+           -1996.513  635245           121
            -1996.513  851945           18
+           -1996.513  462228           298
+           -1996.513  85114            385
+           -1996.513  224950           455
+           -1996.513  700349           401
+           -1996.513  21132            351
+           -1996.513  315029           471
+           -1996.513  862607           468
+           -1996.513  717754           180
+           -1996.513  965994           396
            -1996.513  903420           5
            -1996.513  963053           43
+           -1996.513  529496           343
+           -1996.513  418686           338
            -1996.513  422103           62
+           -1996.513  793035           187
+           -1996.513  414284           158
 
 
 
@@ -338,6 +418,38 @@ QUALITY OF NUMERICAL RESULTS
        (ratio of smallest to largest eigenvalue)
 
 
+MODEL COMMAND WITH FINAL ESTIMATES USED AS STARTING VALUES
+
+     %OVERALL%
+
+     [ c#1*-1.09860 ];
+
+     %C#1%
+
+     [ broad_interest*1.92990 ];
+     [ enjoyment*2.00530 ];
+     [ instrumental_mot*2.53515 ];
+     [ self_efficacy*2.44535 ];
+
+     broad_interest*0.41501 (5);
+     enjoyment*0.29202 (6);
+     instrumental_mot*0.50567 (7);
+     self_efficacy*0.37979 (8);
+
+     %C#2%
+
+     [ broad_interest*2.91088 ];
+     [ enjoyment*3.09240 ];
+     [ instrumental_mot*1.99251 ];
+     [ self_efficacy*2.01814 ];
+
+     broad_interest*0.41501 (5);
+     enjoyment*0.29202 (6);
+     instrumental_mot*0.50567 (7);
+     self_efficacy*0.37979 (8);
+
+
+
 RESIDUAL OUTPUT
 
 
@@ -410,8 +522,8 @@ RESIDUAL OUTPUT
 TECHNICAL 11 OUTPUT
 
      Random Starts Specifications for the k-1 Class Analysis Model
-        Number of initial stage random starts                 100
-        Number of final stage optimizations                    20
+        Number of initial stage random starts                 500
+        Number of final stage optimizations                   100
 
 
 
@@ -433,8 +545,8 @@ TECHNICAL 11 OUTPUT
 TECHNICAL 14 OUTPUT
 
      Random Starts Specifications for the k-1 Class Analysis Model
-        Number of initial stage random starts                 100
-        Number of final stage optimizations                    20
+        Number of initial stage random starts                 500
+        Number of final stage optimizations                   100
 
      Random Starts Specification for the k-1 Class Model for Generated Data
         Number of initial stage random starts                   0
@@ -461,9 +573,9 @@ TECHNICAL 14 OUTPUT
 
 
 
-     Beginning Time:  10:32:23
-        Ending Time:  10:32:24
-       Elapsed Time:  00:00:01
+     Beginning Time:  16:53:24
+        Ending Time:  16:53:29
+       Elapsed Time:  00:00:05
 
 
 
@@ -476,4 +588,4 @@ Fax: (310) 391-8971
 Web: www.StatModel.com
 Support: Support@StatModel.com
 
-Copyright (c) 1998-2022 Muthen & Muthen
+Copyright (c) 1998-2024 Muthen & Muthen

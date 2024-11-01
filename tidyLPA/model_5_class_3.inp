@@ -1,0 +1,59 @@
+TITLE:
+model 5 with 3 classes
+DATA:
+FILE = "data_62339a89bd516bfbbc8576cfc6c62338.dat"; 
+VARIABLE:
+NAMES = broad_interest enjoyment instrumental_mot self_efficacy; 
+ MISSING=.;
+ CLASSES = c1(3);
+
+ANALYSIS:
+TYPE = mixture;
+starts = 500 100;
+MODEL:
+%c1#1%
+broad_interest (vbroad_interest);
+enjoyment (venjoyment);
+instrumental_mot (vinstrumental_mot);
+self_efficacy (vself_efficacy);
+
+broad_interest WITH enjoyment (broad_interestWenjoyment1);
+broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot1);
+broad_interest WITH self_efficacy (broad_interestWself_efficacy1);
+enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot1);
+enjoyment WITH self_efficacy (enjoymentWself_efficacy1);
+instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy1);
+
+%c1#2%
+broad_interest (vbroad_interest);
+enjoyment (venjoyment);
+instrumental_mot (vinstrumental_mot);
+self_efficacy (vself_efficacy);
+
+broad_interest WITH enjoyment (broad_interestWenjoyment2);
+broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot2);
+broad_interest WITH self_efficacy (broad_interestWself_efficacy2);
+enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot2);
+enjoyment WITH self_efficacy (enjoymentWself_efficacy2);
+instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy2);
+
+%c1#3%
+broad_interest (vbroad_interest);
+enjoyment (venjoyment);
+instrumental_mot (vinstrumental_mot);
+self_efficacy (vself_efficacy);
+
+broad_interest WITH enjoyment (broad_interestWenjoyment3);
+broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot3);
+broad_interest WITH self_efficacy (broad_interestWself_efficacy3);
+enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot3);
+enjoyment WITH self_efficacy (enjoymentWself_efficacy3);
+instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy3);
+
+
+OUTPUT:
+TECH14;
+sampstat residual tech11 tech14
+SAVEDATA:
+FILE IS model_5_class_3.dat;
+SAVE = cprobabilities;

@@ -1,5 +1,5 @@
 ---
-title: "Latent Profile Analysis Enumeration"
+title: "Latent Profile Analysis"
 author: "IMMERSE Training Team"
 date: "Updated: `r format(Sys.time(), '%B %d, %Y')`"
 output:
@@ -53,21 +53,172 @@ Visit our [GitHub](https://github.com/immerse-ucsb) account to download the mate
 -   This model utilizes the `PISA` data collected in the U.S. in 2015. To learn more about this data [see here](http://www.oecd.org/pisa/data/).
 -   To access the 2015 US `PISA` data & documentation in R use the following code:
 
+Variables:
+
+`broad_interest`
+
+:   composite measure of students' self reported broad interest
+
+`enjoyment`
+
+:   composite measure of students' self reported enjoyment
+
+`instrumental_mot`
+
+:   composite measure of students' self reported instrumental motivation
+
+`self_efficacy`
+
+:   composite measure of students' self reported self efficacy
+
 ```{r, eval = FALSE}
-devtools::install_github("jrosen48/pisaUSA15")
-library(pisaUSA15)
+#devtools::install_github("jrosen48/pisaUSA15")
+#library(pisaUSA15)
 ```
 
 ------------------------------------------------------------------------
 
-Latent Profile Models:
+## Latent Profile Models
 
--   `model 1` Class-invariant / Diagonal: Equal variances, and covariances fixed to 0
--   `model 2` Class-varying / Diagonal: Free variances and covariances fixed to 0
--   `model 3` Class-invariant / Non-Diagonal: Equal variances and equal covariances
+Latent Profile Analysis (LPA) is a statistical modeling approach for estimating distinct profiles of variables.
+In the social sciences and in educational research, these profiles could represent, for example, how different youth experience dimensions of being engaged (i.e., cognitively, behaviorally, and affectively) at the same time.
+Note that LPA works best with continuous variables (and, in some cases, ordinal variables), but is not appropriate for dichotomous (binary) variables.
+
+Many analysts have carried out LPA using a latent variable modeling approach.
+From this approach, different parameters - means, variances, and covariances - are freely estimated across profiles, fixed to be the same across profiles, or constrained to be zero.
+The MPlus software is commonly used to estimate these models (see [here](https://www.statmodel.com/examples/mixture.shtml)) using the expectation-maximization (EM) algorithm to obtain the maximum likelihood estimates for the parameters.
+
+Different *models* (or how or whether parameters are estimated) can be specified and estimated.
+While MPlus is widely-used (and powerful), it is costly, closed-source, and can be difficult to use, particularly with respect to interpreting or using the output of specified models as part of a reproducible workflow
+
+------------------------------------------------------------------------
+
+## Terminology for specifying variance-covariance matrix
+
+The code used to estimate LPA models in this walkthrough is from the `tidyLPA` package.
+`TidyLPA`([source](https://data-edu.github.io/tidyLPA/articles/Introduction_to_tidyLPA.html)) is an R package designed to estimate latent profile models using a tidy framework.
+It can interface with Mplus via the MplusAutomation package, enabling the estimation of latent profile models with different variance-covariance structures.
+
+-   `model 1` Profile-invariant / Diagonal: Equal variances, and covariances fixed to 0
+-   `model 2` Profile-varying / Diagonal: Free variances and covariances fixed to 0
+-   `model 3` Profile-invariant / Non-Diagonal: Equal variances and equal covariances
+    -   Note: an alternative to Model 3 is freely estimating the covariances
 -   `model 4` Free variances, and equal covariances
 -   `model 5` Equal variances, and free covariances
--   `model 6` Class Varying / Non-Diagonal: Free variances and free covariances
+-   `model 6` Profile Varying / Non-Diagonal: Free variances and free covariances
+
+### Model 1
+
+*Profile-invariant/diagonal:*
+
+-   *Equal Variances*: Variances are fixed to equality across the profiles (i.e., variances are constrained to be equal for each profile).
+
+-   *Covariances fixed to zero* (i.e., the off-diagonal cells of the matrix are zero).
+
+The most parsimonious model and the most restricted.
+
+$$
+\begin{pmatrix}
+\sigma^2_1 & 0 & 0 \\
+0 & \sigma^2_2 & 0 \\
+0 & 0 & \sigma^2_3 \\
+\end{pmatrix}
+$$
+
+### Model 2
+
+*Profile-varying/diagonal:*
+
+-   *Free variances*: Variances parameters are freely estimated across the profiles (i.e., variances vary by profile).
+
+-   *Covariances* *fixed to zero* (i.e., the off-diagonal cells of the matrix are zero).
+
+This model is more flexible and less parsimonious than model 1.
+
+$$
+\begin{pmatrix}
+\sigma^2_{1p} & 0 & 0 \\
+0 & \sigma^2_{2p} & 0 \\
+0 & 0 & \sigma^2_{3p} \\
+\end{pmatrix}
+$$
+
+### Model 3
+
+*Profile-invariant/ non-diagonal or unrestricted:*
+
+-   *Equal variances:* Variances are fixed to equality across profile.
+    (i.e., variances are constrained to be same for each profile).
+
+-   *Equal Covariances*: The covariances are now estimated and constrained to be equal.
+
+    -   An alternative to Model 3 is freely estimating the covariances (Model 5 here).
+
+$$
+\begin{pmatrix}
+\sigma^2_1 & \sigma_{12} & \sigma_{13} \\
+\sigma_{12} & \sigma^2_2 & \sigma_{23} \\
+\sigma_{13} & \sigma_{23} & \sigma^2_3 \\
+\end{pmatrix}
+$$
+
+### Model 4 
+
+Varying means, varying variances, and equal covariances:
+
+-   *Free variances*: Variances parameters are freely estimated across profiles (i.e., variances vary by profile).
+
+-   *Equal Covariances*: Covariances are constrained to be equal.
+
+This model is also considered to be an extension of Model 3.
+
+$$
+\begin{pmatrix}
+\sigma^2_{1p} & \sigma_{12} & \sigma_{13} \\
+\sigma_{12} & \sigma^2_{2p} & \sigma_{23} \\
+\sigma_{13} & \sigma_{23} & \sigma^2_{3p} \\
+\end{pmatrix}
+$$
+
+### Model 5
+
+Varying means, equal variances, and varying covariances:
+
+-   *Equal variances:* Variances are fixed to equality across the profiles.
+    (i.e., variances are constrained to be same for each profile).
+
+-   *Free Covariances*: Covariances are now freely estimated across the profiles.
+
+This model is also considered to be an extension of Model 3.
+
+$$
+\begin{pmatrix}
+\sigma^2_{1} & \sigma_{12p} & \sigma_{13p} \\
+\sigma_{12p} & \sigma^2_{2} & \sigma_{23p} \\
+\sigma_{13p} & \sigma_{23p} & \sigma^2_{3} \\
+\end{pmatrix}
+$$
+
+### Model 6
+
+*Profile-varying / Non-diagonal*:
+
+-   *Free variances*: Variances parameters are freely estimated across profiles (i.e., variances vary by profile).
+
+-   *Free Covariances*: Covariances are now freely estimated across the profiles.
+
+This is the most complex and unrestricted model.
+It is also the least parsimonious
+
+*Note*: The unrestricted model is also sometimes known as Model 4.
+
+$$
+\begin{pmatrix}
+\sigma^2_{1p} & \sigma_{12p} & \sigma_{13p} \\
+\sigma_{12p} & \sigma^2_{2p} & \sigma_{23p} \\
+\sigma_{13p} & \sigma_{23p} & \sigma^2_{3p} \\
+\end{pmatrix}
+$$
 
 ------------------------------------------------------------------------
 
@@ -86,7 +237,7 @@ library(tidyLPA)
 library(pisaUSA15)
 library(cowplot)
 library(filesstrings)
-here::i_am("lpa.Rmd")
+here::i_am("lpa_enum.Rmd")
 ```
 
 ------------------------------------------------------------------------
@@ -139,26 +290,35 @@ ds %>%
 
 Enumerate using `estimate_profiles()`:
 
--   Estimate models with classes $K = 1:4$
+-   Estimate models with profiles $K = 1:5$
 -   Model has 4 continuous indicators
 -   Default variance-covariance specifications (model 1)
--   Change `variances` and `covariances` to indicate the model you want to specify (see Vignette)
+-   Change `variances` and `covariances` to indicate the model you want to specify, in this example, we are estimating all six models.
 
 ```{r, eval=FALSE}
 
 # Run LPA models 
-pisa %>% 
-    estimate_profiles(1:4,
+lpa_fit <- pisa %>% 
+    estimate_profiles(1:5,
                       package = "MplusAutomation",
-                      ANALYSIS = "starts = 100, 20;",
-                      variances = c("equal", "varying", "equal", "varying"),
-                      covariances = c("zero", "zero", "equal", "equal"),
+                      ANALYSIS = "starts = 500 100;",
+                      OUTPUT = "sampstat residual tech11 tech14",
+                      variances = c("equal", "varying", "equal", "varying", "equal", "varying"),
+                      covariances = c("zero", "zero", "equal", "equal", "varying", "varying"),
                       keepfiles = TRUE)
+
+# Compare fit statistics
+get_fit(lpa_fit)
+
 
 # Move files to folder 
 files <- list.files(here(), pattern = "^model")
-file.move(files, here("tidyLPA"))
+move_files(files, here("tidyLPA"), overwrite = TRUE)
 ```
+
+CHECK EVERY SINGLE OUTPUT TO ENSURE MODELS CONVERGED AND MAKE NOTE OF MODELS THAT DID NOT!
+
+...please :)
 
 ------------------------------------------------------------------------
 
@@ -170,14 +330,17 @@ Alternative method to `estimate_profiles()`: Run enumeration using `mplusObject`
 
 You can change the model specification for LPA using the syntax provided in lecture.
 
-#### Model 1 
+#### Model 1
+
+When estimating LPA in Mplus, the default variance/covariance specification is the most restricted model (Model 1).
+So we don't have to specify anything here.
 
 ```{r, cache = TRUE, eval = FALSE}
 
-lpa_k14  <- lapply(1:4, function(k) {
+lpa_k14  <- lapply(1:5, function(k) {
   lpa_enum  <- mplusObject(
       
-    TITLE = glue("Class {k}"), 
+    TITLE = glue("Profile {k}"), 
   
     VARIABLE = glue(
     "usevar = broad_interest-self_efficacy;
@@ -186,9 +349,9 @@ lpa_k14  <- lapply(1:4, function(k) {
   ANALYSIS = 
    "estimator = mlr; 
     type = mixture;
-    starts = 100 20;",
+    starts = 500 100;",
   
-  OUTPUT = "sampstat residual tech11 tech14;",
+  OUTPUT = "sampstat svalues residual tech11 tech14;",
   
   usevariables = colnames(pisa),
   rdata = pisa)
@@ -202,21 +365,24 @@ lpa_enum_fit <- mplusModeler(lpa_enum,
 
 #### Model 2
 
+Here, an addition loop adds the variance/covariance specifications for each class-specific statement.
+For the profile-varying/diagonal specification, you must specify the variances to be freely estimated:
+
+`broad_interest-self_efficacy;`
+
 ```{r, eval = FALSE}
-lpa_m2_k14  <- lapply(1:4, function(k){ 
+lpa_m2_k14  <- lapply(1:5, function(k){ 
   
-  MODEL <- lapply(1:k, function(i){
-    
+  # This MODEL section changes the model specification
+  MODEL <- paste(sapply(1:k, function(i) {
     glue("
-    
     %c#{i}%
-   broad_interest-self_efficacy;      ! variances are freely estimated
-   
-   ")
-  })
+    broad_interest-self_efficacy;      ! variances are freely estimated
+    ")
+  }), collapse = "\n")
   
   lpa_enum_m2  <- mplusObject(
-    TITLE = glue("Class {k} - Model2"),
+    TITLE = glue("Profile {k} - Model 2"),
     
     VARIABLE = glue(
       "usevar = broad_interest-self_efficacy;
@@ -225,12 +391,12 @@ lpa_m2_k14  <- lapply(1:4, function(k){
     ANALYSIS = 
       "estimator = mlr; 
     type = mixture;
-    starts = 100 20;",
+    starts = 500 100;",
     
-    MODEL = glue("{MODEL[1:k]}"),
+    MODEL = MODEL,
     
     
-    OUTPUT = "sampstat residual tech11 tech14;",
+    OUTPUT = "sampstat svalues residual tech11 tech14;",
     
     usevariables = colnames(pisa),
     rdata = pisa)
@@ -242,212 +408,336 @@ lpa_m2_k14  <- lapply(1:4, function(k){
 })
 ```
 
+For reference, here is the Mplus syntax for different specifications:
+
+**Fixed covariance to zero (DEFAULT)**:
+
+`broad_interest WITH enjoyment@0;`
+
+**Free covariance**:
+
+`broad_interest WITH enjoyment;`
+
+**Equal covariances**:
+
+`%c#1%`
+
+`broad_interest WITH enjoyment (1);`
+
+`%c#2%`
+
+`broad_interest WITH enjoyment (1);`
+
+**Equal variance (DEFAULT)**:
+
+`%c#1%`
+
+`broad_interest (1);`
+
+`%c#2%`
+
+`broad_interest (1);`
+
+**Free variance**:
+
+`mth_scor-bio_scor;`
+
+You can also open the `tidyLPA` .inp files to see the specifications.
 
 ------------------------------------------------------------------------
 
 ## Table of Fit
 
-APA formatted model fit table with additional fit indices
-
-Extract data:
+Evaluate each model specification separately using fit indices.
 
 ```{r}
+source("enum_table")
+
+# Read in model
 output_pisa <- readModels(here("tidyLPA"), quiet = TRUE)
 
-enum_extract <- LatexSummaryTable(
-  output_pisa,
-  keepCols = c(
-    "Title",
-    "Parameters",
-    "LL",
-    "BIC",
-    "aBIC",
-    "BLRT_PValue",
-    "Observations"
-  )
-)
+enum_fit(output_pisa)
 
-allFit <- enum_extract %>%
-  mutate(CAIC = -2 * LL + Parameters * (log(Observations) + 1)) %>%
-  mutate(AWE = -2 * LL + 2 * Parameters * (log(Observations) + 1.5)) %>%
-  separate(Title, c("Model", "Class"), sep = "with") %>% 
-  mutate(SIC = -.5 * BIC) %>%
-  drop_na(SIC) %>% 
-  group_by(Model) %>% 
-  mutate(expSIC = exp(SIC - max(SIC))) %>%
-  mutate(BF = exp(SIC - lead(SIC))) %>%
-  mutate(cmPk = expSIC / sum(expSIC)) %>%
-  ungroup() %>% 
-  unite(Title, c("Model", "Class"), sep = "with", remove = TRUE) %>% 
-  dplyr::select(1:5, 8:9, 6, 12, 13) %>%
-  mutate(Title = str_to_title(Title)) %>% 
-  arrange(Title)
-```
-
-Create table:
-
-```{r}
-allFit %>%
-  gt() %>%
-  tab_header(title = md("**Model Fit Summary Table**")) %>%
-  cols_label(
-    Title = "Classes",
-    Parameters = md("Par"),
-    LL = md("*LL*"),
-    BLRT_PValue = "BLRT",
-    BF = md("BF"),
-    cmPk = md("*cmPk*")
-  ) %>%
-  tab_footnote(
-    footnote = md(
-      "*Note.* Par = Parameters; *LL* = model log likelihood;
-BIC = Bayesian information criterion;
-aBIC = sample size adjusted BIC; CAIC = consistent Akaike information criterion;
-AWE = approximate weight of evidence criterion;
-BLRT = bootstrapped likelihood ratio test p-value;
-VLMR = Vuong-Lo-Mendell-Rubin adjusted likelihood ratio test p-value;
-*cmPk* = approximate correct model probability."
-    ),
-locations = cells_title()
-  )  %>%
-  tab_options(column_labels.font.weight = "bold") %>%
-  fmt_number(
-    9,
-    decimals = 2,
-    drop_trailing_zeros = TRUE,
-    suffixing = TRUE
-  ) %>%
-  fmt_number(c(3:8, 10),
-             decimals = 0) %>%
-  sub_missing(1:10,
-              missing_text = "--") %>%
-  fmt(
-    c(8, 10),
-    fns = function(x)
-      ifelse(x < 0.001, "<0.001",
-             scales::number(x, accuracy = 0.01))
-  ) %>%
-  fmt(
-    9,
-    fns = function (x)
-      ifelse(x > 100, ">100",
-             scales::number(x, accuracy = .1))
-  ) %>% 
-  tab_row_group(
-    label = "Model 1",
-    rows = c(1:4)) %>%
-  tab_row_group(
-    label = "Model 2",
-    rows =c(5:8)) %>%    
-  tab_row_group(
-    label = "Model 3",
-    rows = c(9:12)) %>%
-  tab_row_group(
-    label = "Model 4",
-    rows = c(13:16)) %>%    
-  row_group_order(
-    groups = c("Model 1","Model 2", "Model 3", "Model 4")
-  ) 
+enum_table(output_pisa, 1:5, 6:10, 11:15, 16:20, 21:25, 26:29)
 ```
 
 ------------------------------------------------------------------------
 
 ## Information Criteria Plot
 
-Plot information criteria
+Look for "elbow" to help with profile selection
 
 ```{r}
-allFit %>% 
-  filter(grepl("Model 1", Title)) %>% 
-  dplyr::select(2:7) %>% 
-  rowid_to_column() %>% 
-  pivot_longer(`BIC`:`AWE`,
-               names_to = "Index",
-               values_to = "ic_value") %>%  
-mutate(Index = factor(Index,
-                      levels = c ("AWE", "CAIC", "BIC", "aBIC"))) %>% 
-  ggplot(aes(x = rowid, y = ic_value,
-             color = Index, shape = Index,
-             group = Index, lty = Index)) +
-  geom_point(size = 2.0) + geom_line(size = .8) +
-  scale_x_continuous(breaks = 1:6) +
-  scale_colour_grey(end = .5) +
-  theme_cowplot() +
-  labs(x = "Number of Classes", y = "Information Criteria Value") +
-  theme(legend.title = element_blank(),
-        legend.position = "top")
+source("ic_plot")
+ic_plot(output_pisa)
 ```
+
+Based on fit indices, I am choosing the following candidate models:
+
+1.  Model 1: 2 Profile
+2.  Model 2: 3 Profile
+3.  Model 3: 4 Profile
+4.  Model 4: 3 Profile
+5.  Model 5: 2 Profile
+6.  Model 6: 2 Profile
 
 ------------------------------------------------------------------------
 
 ## Compare models
 
+### Correct Model Probability (cmpK) recalculation
+
+Take the candidate models and recalculate the approximate correct model probabilities (Masyn, 2013)
+
+```{r, eval=TRUE}
+# CmpK recalculation:
+enum_fit1 <- enum_fit(output_pisa)
+
+stage2_cmpk <- enum_fit1 %>% 
+  slice(2, 8, 14, 18, 22, 27) %>% 
+  mutate(SIC = -.5 * BIC,
+         expSIC = exp(SIC - max(SIC)),
+         cmPk = expSIC / sum(expSIC),
+         BF = exp(SIC - lead(SIC))) %>% 
+  select(Title, Parameters, BIC:AWE, cmPk, BF)
+
+ 
+# Format Fit Table
+stage2_cmpk %>%
+  gt() %>% 
+  tab_options(column_labels.font.weight = "bold") %>%
+  fmt_number(
+    7,
+    decimals = 2,
+    drop_trailing_zeros = TRUE,
+    suffixing = TRUE
+  ) %>%
+  fmt_number(c(3:6),
+             decimals = 2) %>% 
+    fmt_number(8,decimals = 2,
+             drop_trailing_zeros=TRUE,
+             suffixing = TRUE) %>% 
+  fmt(8, fns = function(x) 
+    ifelse(x>100, ">100",
+           scales::number(x, accuracy = .1))) %>% 
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+      ),
+    locations = list(cells_body(
+     columns = BIC,
+     row = BIC == min(BIC[1:nrow(stage2_cmpk)]) 
+    ),
+    cells_body(
+     columns = aBIC,
+     row = aBIC == min(aBIC[1:nrow(stage2_cmpk)])
+    ),
+    cells_body(
+     columns = CAIC,
+     row = CAIC == min(CAIC[1:nrow(stage2_cmpk)])
+    ),
+    cells_body(
+     columns = AWE,
+     row = AWE == min(AWE[1:nrow(stage2_cmpk)])
+    ),
+    cells_body(
+     columns = cmPk,
+     row =  cmPk == max(cmPk[1:nrow(stage2_cmpk)])
+     ),
+    cells_body(
+     columns = BF, 
+     row =  BF > 10)
+  )
+)
+
+```
+
+### Compare loglikelihood
+
+You can also compare models using nested model testing directly with MplusAutomation.
+Note that you can only compare across models but the profiles must stay the same.
+
 ```{r}
 # MplusAutomation Method using `compareModels` 
 
-parallelModels <- readModels(here("tidyLPA"))
-
-compareModels(parallelModels[["model_3_class_2.out"]],
-  parallelModels[["model_4_class_2.out"]], diffTest = TRUE)
+compareModels(output_pisa[["model_2_class_3.out"]],
+  output_pisa[["model_4_class_3.out"]], diffTest = TRUE)
 ```
+
+Here, Model 1 (restricted, fewer parameters) is nested in Model 2.
+The chi-square difference test, assuming nested models, shows a significant improvement in fit for Model 2 over Model 1, despite the added parameters.
 
 ------------------------------------------------------------------------
 
-##  Latent Profile Plot
+## Latent Profile Plot
 
 ```{r}
-source("plot_lpa_function.txt")
+source("plot_lpa.txt")
 
-plot_lpa_function(model_name = output_pisa$model_1_class_2.out)
+plot_lpa(model_name = output_pisa$model_3_class_4.out)
 ```
 
-save figure
+Save figure
 
 ```{r, eval = FALSE}
-ggsave(here("figures", "C4_LPA_Plot.png"), dpi="retina", height=5, width=7, units="in")
+ggsave(here("figures", "model3_profile4.png"), dpi = "retina", bg = "white", height=5, width=8, units="in")
+```
+
+## Classifications Diagnostics Table
+
+Use Mplus to calculate k-class confidence intervals (Note: Change the syntax to make your chosen \*k\*-class model):
+
+```{r, eval = FALSE}
+classification  <- mplusObject(
+  
+  TITLE = "LPA - Calculated k-Class 95% CI",
+  
+  VARIABLE = 
+  "usevar =  broad_interest-self_efficacy;
+   classes = c1(4);",
+  
+  ANALYSIS = 
+   "estimator = ml; 
+    type = mixture;    
+    starts = 0; 
+    processors = 10;
+    optseed = 468036; ! This seed is taken from chosen model output
+    bootstrap = 1000;",
+  
+  MODEL =
+    " 
+    ! This is copied and pasted from the chosen model input
+  %c1#1%
+  broad_interest (vbroad_interest);
+  enjoyment (venjoyment);
+  instrumental_mot (vinstrumental_mot);
+  self_efficacy (vself_efficacy);
+
+  broad_interest WITH enjoyment (broad_interestWenjoyment);
+  broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot);
+  broad_interest WITH self_efficacy (broad_interestWself_efficacy);
+  enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot);
+  enjoyment WITH self_efficacy (enjoymentWself_efficacy);
+  instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy);
+
+  %c1#2%
+  broad_interest (vbroad_interest);
+  enjoyment (venjoyment);
+  instrumental_mot (vinstrumental_mot);
+  self_efficacy (vself_efficacy);
+
+  broad_interest WITH enjoyment (broad_interestWenjoyment);
+  broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot);
+  broad_interest WITH self_efficacy (broad_interestWself_efficacy);
+  enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot);
+  enjoyment WITH self_efficacy (enjoymentWself_efficacy);
+  instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy);
+
+  %c1#3%
+  broad_interest (vbroad_interest);
+  enjoyment (venjoyment);
+  instrumental_mot (vinstrumental_mot);
+  self_efficacy (vself_efficacy);
+
+  broad_interest WITH enjoyment (broad_interestWenjoyment);
+  broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot);
+  broad_interest WITH self_efficacy (broad_interestWself_efficacy);
+  enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot);
+  enjoyment WITH self_efficacy (enjoymentWself_efficacy);
+  instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy);
+
+  %c1#4%
+  broad_interest (vbroad_interest);
+  enjoyment (venjoyment);
+  instrumental_mot (vinstrumental_mot);
+  self_efficacy (vself_efficacy);
+
+  broad_interest WITH enjoyment (broad_interestWenjoyment);
+  broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot);
+  broad_interest WITH self_efficacy (broad_interestWself_efficacy);
+  enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot);
+  enjoyment WITH self_efficacy (enjoymentWself_efficacy);
+  instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy);
+  
+  
+  !CHANGE THIS SECTION TO YOUR CHOSEN k-CLASS MODEL
+    
+  %OVERALL%
+  [C1#1](c1);
+  [C1#2](c2);
+  [C1#3](c3);
+
+  Model Constraint:
+  New(p1 p2 p3 p4);
+  
+  p1 = exp(c1)/(1+exp(c1)+exp(c2)+exp(c3));
+  p2 = exp(c2)/(1+exp(c1)+exp(c2)+exp(c3));
+  p3 = exp(c3)/(1+exp(c1)+exp(c2)+exp(c3));  
+  p4 = 1/(1+exp(c1)+exp(c2)+exp(c3));",
+
+  
+  OUTPUT = "cinterval(bcbootstrap)",
+  
+  usevariables = colnames(pisa),
+  rdata = pisa)
+
+classification_fit <- mplusModeler(classification,
+                dataout=here("mplus", "class.dat"),
+                modelout=here("mplus", "class.inp") ,
+                check=TRUE, run = TRUE, hashfilename = FALSE)
+```
+
+Create table
+
+```{r}
+source("diagnostics_table")
+
+class_output <- readModels(here("mplus", "class.out"))
+
+diagnostics_table(class_output)
 ```
 
 ------------------------------------------------------------------------
 
 ## References
 
+Hallquist, M. N., & Wiley, J. F.
+(2018).
+MplusAutomation: An R Package for Facilitating Large-Scale Latent Variable Analyses in Mplus.
+Structural equation modeling: a multidisciplinary journal, 25(4), 621-638.
 
-Hallquist, M. N., & Wiley, J. F. (2018). MplusAutomation: An R Package for Facilitating Large-Scale Latent Variable Analyses in Mplus. Structural equation modeling: a multidisciplinary journal, 25(4), 621-638.
+Miller, J. D., Hoffer, T., Suchner, R., Brown, K., & Nelson, C.
+(1992).
+LSAY codebook.
+Northern Illinois University.
 
-Miller, J. D., Hoffer, T., Suchner, R., Brown, K., & Nelson, C. (1992). LSAY codebook. Northern Illinois University.
+Muthén, B. O., Muthén, L. K., & Asparouhov, T.
+(2017).
+Regression and mediation analysis using Mplus.
+Los Angeles, CA: Muthén & Muthén.
 
-Muthén, B. O., Muthén, L. K., & Asparouhov, T. (2017). Regression and mediation analysis using Mplus. Los Angeles, CA: Muthén & Muthén.
+Muthén, L.K.
+and Muthén, B.O.
+(1998-2017).
+Mplus User's Guide.
+Eighth Edition.
+Los Angeles, CA: Muthén & Muthén
 
-Muthén, L.K. and Muthén, B.O. (1998-2017).  Mplus User’s Guide.  Eighth Edition. Los Angeles, CA: Muthén & Muthén
+Rosenberg, J. M., van Lissa, C. J., Beymer, P. N., Anderson, D. J., Schell, M. J.
+& Schmidt, J. A.
+(2019).
+tidyLPA: Easily carry out Latent Profile Analysis (LPA) using open-source or commercial software [R package].
+<https://data-edu.github.io/tidyLPA/>
 
-Rosenberg, J. M., van Lissa, C. J., Beymer, P. N., Anderson, D. J., Schell, M. J. & Schmidt, J. A. (2019). tidyLPA: Easily carry out Latent Profile Analysis (LPA) using open-source or commercial software [R package]. https://data-edu.github.io/tidyLPA/
+R Core Team (2017).
+R: A language and environment for statistical computing.
+R Foundation for Statistical Computing, Vienna, Austria.
+URL <http://www.R-project.org/>
 
-R Core Team (2017). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL http://www.R-project.org/
-
-Wickham et al., (2019). Welcome to the tidyverse. Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686
+Wickham et al., (2019).
+Welcome to the tidyverse.
+Journal of Open Source Software, 4(43), 1686, <https://doi.org/10.21105/joss.01686>
 
 ------------------------------------------------------------------------
 
 ![](figures/UCSB_Navy_mark.png){width="75%"}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,14 +1,14 @@
-Mplus VERSION 8.8
+Mplus VERSION 8.11
 MUTHEN & MUTHEN
-04/03/2023  10:32 AM
+10/31/2024   4:53 PM
 
 INPUT INSTRUCTIONS
 
   TITLE:
-  Class 3
+  Profile 3
   DATA:
-  FILE = "C:/Users/dnajiarch/Box/IES_IMMERSE/Training Materials/lpa_enum/enum_lpa/lpa_pisa";
-
+  FILE = "C:/Users/dnajiarch/Box/IES_IMMERSE/youtube_materials/lpa_enum/
+  enum_lpa/lpa_pisa";
   VARIABLE:
   NAMES = broad_interest enjoyment instrumental_mot self_efficacy;
    MISSING=.;
@@ -17,9 +17,9 @@ INPUT INSTRUCTIONS
   ANALYSIS:
   estimator = mlr;
       type = mixture;
-      starts = 100 20;
+      starts = 500 100;
   OUTPUT:
-  sampstat residual tech11 tech14;
+  sampstat svalues residual tech11 tech14;
 
 
 
@@ -38,7 +38,7 @@ INPUT INSTRUCTIONS
 
 
 
-Class 3
+Profile 3
 
 SUMMARY OF ANALYSIS
 
@@ -89,15 +89,15 @@ Maximum number of iterations for H1                           2000
 Convergence criterion for H1                             0.100D-03
 Optimization algorithm                                         EMA
 Random Starts Specifications
-  Number of initial stage random starts                        100
-  Number of final stage optimizations                           20
+  Number of initial stage random starts                        500
+  Number of final stage optimizations                          100
   Number of initial stage iterations                            10
   Initial stage convergence criterion                    0.100D+01
   Random starts scale                                    0.500D+01
   Random seed for generating random starts                       0
 
 Input data file(s)
-  C:/Users/dnajiarch/Box/IES_IMMERSE/Training Materials/lpa_enum/enum_lpa/lpa_pi
+  C:/Users/dnajiarch/Box/IES_IMMERSE/youtube_materials/lpa_enum/enum_lpa/lpa_pis
 Input data format  FREE
 
 
@@ -179,24 +179,73 @@ RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
 
 Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
 
+           -1952.978  335485           496
+           -1952.978  862607           468
+           -1952.978  471438           252
            -1952.978  407168           44
-           -1952.978  569131           26
-           -1952.978  939021           8
+           -1952.978  68850            462
+           -1952.978  387701           275
+           -1952.978  23012            352
+           -1952.978  281558           184
+           -1952.978  751054           117
+           -1952.978  848331           137
+           -1952.978  298275           418
+           -1952.978  399380           436
+           -1952.978  263049           454
+           -1952.978  168762           200
+           -1952.978  383986           159
+           -1952.978  505879           424
+           -1952.978  313407           132
+           -1952.978  782821           272
+           -1952.978  801065           393
+           -1952.978  614535           449
+           -1952.978  416463           467
+           -1952.978  951709           348
+           -1952.978  732596           320
+           -1952.978  749635           420
+           -1952.978  686482           215
+           -1952.978  535804           111
+           -1952.978  602797           336
+           -1952.978  173191           422
            -1952.978  443917           60
+           -1952.978  514326           325
+           -1952.978  278692           342
+           -1952.978  965994           396
+           -1952.978  783102           433
+           -1952.978  197223           332
+           -1952.978  871851           257
            -1952.978  887676           22
+           -1952.978  772131           407
            -1952.978  399671           13
+           -1952.978  644297           340
+           -1952.978  836066           372
            -1952.978  963053           43
-           -1952.978  259507           53
+           -1952.978  55115            408
+           -1952.978  875667           367
+           -1952.978  301180           236
+           -1952.978  340112           126
+           -1952.978  972873           157
+           -1952.978  835767           210
+           -1952.978  950604           172
+           -1952.978  863094           147
            -1952.978  370466           41
-           -1952.978  987090           70
-           -1952.978  314084           81
+           -1952.978  499150           216
            -1952.978  247224           94
-           -1952.978  848163           47
+           -1952.978  471040           403
+           -1952.978  960438           116
+           -1952.978  226322           478
+           -1952.978  616917           261
            -1952.978  372176           23
+           -1952.978  22362            365
+           -1952.978  297518           166
            -1952.978  153942           31
+           -1952.978  741888           138
            -1952.978  637345           19
+           -1952.978  404510           442
+           -1952.978  765392           382
+           -1952.978  923437           398
 
-4 perturbed starting value run(s) did not converge or were rejected in the third stage.
+35 perturbed starting value run(s) did not converge or were rejected in the third stage.
 
 
 
@@ -234,8 +283,8 @@ BASED ON THE ESTIMATED MODEL
    Classes
 
        1         81.97700          0.16799
-       2         90.67902          0.18582
-       3        315.34398          0.64620
+       2        315.34397          0.64620
+       3         90.67902          0.18582
 
 
 FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
@@ -245,8 +294,8 @@ BASED ON ESTIMATED POSTERIOR PROBABILITIES
    Classes
 
        1         81.97700          0.16799
-       2         90.67902          0.18582
-       3        315.34398          0.64620
+       2        315.34397          0.64620
+       3         90.67902          0.18582
 
 
 FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
@@ -258,8 +307,8 @@ Class Counts and Proportions
    Classes
 
        1               79          0.16189
-       2               86          0.17623
-       3              323          0.66189
+       2              323          0.66189
+       3               86          0.17623
 
 
 CLASSIFICATION QUALITY
@@ -272,9 +321,9 @@ by Latent Class (Column)
 
            1        2        3
 
-    1   0.913    0.000    0.087
-    2   0.000    0.924    0.076
-    3   0.030    0.035    0.935
+    1   0.913    0.087    0.000
+    2   0.030    0.935    0.035
+    3   0.000    0.076    0.924
 
 
 Classification Probabilities for the Most Likely Latent Class Membership (Column)
@@ -282,9 +331,9 @@ by Latent Class (Row)
 
            1        2        3
 
-    1   0.880    0.000    0.120
-    2   0.000    0.877    0.123
-    3   0.022    0.021    0.958
+    1   0.880    0.120    0.000
+    2   0.022    0.958    0.021
+    3   0.000    0.123    0.877
 
 
 Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
@@ -292,9 +341,9 @@ by Latent Class (Row)
 
               1        2        3
 
-    1      1.992  -11.696    0.000
-    2    -11.722    1.962    0.000
-    3     -3.783   -3.838    0.000
+    1     13.688   11.696    0.000
+    2      0.055    3.838    0.000
+    3    -13.684   -1.962    0.000
 
 
 MODEL RESULTS
@@ -319,20 +368,6 @@ Latent Class 1
 Latent Class 2
 
  Means
-    BROAD_INTE         3.198      0.077     41.378      0.000
-    ENJOYMENT          3.800      0.051     75.050      0.000
-    INSTRUMENT         1.724      0.093     18.579      0.000
-    SELF_EFFIC         1.714      0.066     25.972      0.000
-
- Variances
-    BROAD_INTE         0.449      0.039     11.427      0.000
-    ENJOYMENT          0.118      0.019      6.350      0.000
-    INSTRUMENT         0.497      0.038     12.976      0.000
-    SELF_EFFIC         0.361      0.024     15.267      0.000
-
-Latent Class 3
-
- Means
     BROAD_INTE         2.706      0.048     56.580      0.000
     ENJOYMENT          2.835      0.035     80.259      0.000
     INSTRUMENT         2.131      0.041     51.587      0.000
@@ -344,17 +379,76 @@ Latent Class 3
     INSTRUMENT         0.497      0.038     12.976      0.000
     SELF_EFFIC         0.361      0.024     15.267      0.000
 
+Latent Class 3
+
+ Means
+    BROAD_INTE         3.198      0.077     41.378      0.000
+    ENJOYMENT          3.800      0.051     75.050      0.000
+    INSTRUMENT         1.724      0.093     18.579      0.000
+    SELF_EFFIC         1.714      0.066     25.972      0.000
+
+ Variances
+    BROAD_INTE         0.449      0.039     11.427      0.000
+    ENJOYMENT          0.118      0.019      6.350      0.000
+    INSTRUMENT         0.497      0.038     12.976      0.000
+    SELF_EFFIC         0.361      0.024     15.267      0.000
+
 Categorical Latent Variables
 
  Means
-    C#1               -1.347      0.203     -6.650      0.000
-    C#2               -1.246      0.140     -8.928      0.000
+    C#1               -0.101      0.231     -0.436      0.663
+    C#2                1.246      0.140      8.928      0.000
 
 
 QUALITY OF NUMERICAL RESULTS
 
-     Condition Number for the Information Matrix              0.260E-02
+     Condition Number for the Information Matrix              0.176E-02
        (ratio of smallest to largest eigenvalue)
+
+
+MODEL COMMAND WITH FINAL ESTIMATES USED AS STARTING VALUES
+
+     %OVERALL%
+
+     [ c#1*-0.10089 ];
+     [ c#2*1.24634 ];
+
+     %C#1%
+
+     [ broad_interest*1.92599 ];
+     [ enjoyment*1.68378 ];
+     [ instrumental_mot*2.56696 ];
+     [ self_efficacy*2.47578 ];
+
+     broad_interest*0.44934 (5);
+     enjoyment*0.11849 (6);
+     instrumental_mot*0.49749 (7);
+     self_efficacy*0.36129 (8);
+
+     %C#2%
+
+     [ broad_interest*2.70612 ];
+     [ enjoyment*2.83525 ];
+     [ instrumental_mot*2.13090 ];
+     [ self_efficacy*2.15199 ];
+
+     broad_interest*0.44934 (5);
+     enjoyment*0.11849 (6);
+     instrumental_mot*0.49749 (7);
+     self_efficacy*0.36129 (8);
+
+     %C#3%
+
+     [ broad_interest*3.19841 ];
+     [ enjoyment*3.80030 ];
+     [ instrumental_mot*1.72448 ];
+     [ self_efficacy*1.71394 ];
+
+     broad_interest*0.44934 (5);
+     enjoyment*0.11849 (6);
+     instrumental_mot*0.49749 (7);
+     self_efficacy*0.36129 (8);
+
 
 
 RESIDUAL OUTPUT
@@ -399,39 +493,6 @@ RESIDUAL OUTPUT
            Model Estimated Means
               BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
               ________      ________      ________      ________
-                3.198         3.800         1.724         1.714
-
-
-           Residuals for Means
-              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
-              ________      ________      ________      ________
-                0.000         0.000         0.000         0.000
-
-
-           Model Estimated Covariances
-              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
-              ________      ________      ________      ________
- BROAD_IN       0.449
- ENJOYMEN       0.000         0.118
- INSTRUME       0.000         0.000         0.497
- SELF_EFF       0.000         0.000         0.000         0.361
-
-
-           Residuals for Covariances
-              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
-              ________      ________      ________      ________
- BROAD_IN      -0.012
- ENJOYMEN       0.012        -0.038
- INSTRUME       0.075         0.027         0.104
- SELF_EFF      -0.028         0.007         0.000        -0.043
-
-
-     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 3
-
-
-           Model Estimated Means
-              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
-              ________      ________      ________      ________
                 2.706         2.835         2.131         2.152
 
 
@@ -459,11 +520,44 @@ RESIDUAL OUTPUT
  SELF_EFF       0.003        -0.004         0.051        -0.029
 
 
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 3
+
+
+           Model Estimated Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                3.198         3.800         1.724         1.714
+
+
+           Residuals for Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           Model Estimated Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.449
+ ENJOYMEN       0.000         0.118
+ INSTRUME       0.000         0.000         0.497
+ SELF_EFF       0.000         0.000         0.000         0.361
+
+
+           Residuals for Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN      -0.012
+ ENJOYMEN       0.012        -0.038
+ INSTRUME       0.075         0.027         0.104
+ SELF_EFF      -0.028         0.007         0.000        -0.043
+
+
 TECHNICAL 11 OUTPUT
 
      Random Starts Specifications for the k-1 Class Analysis Model
-        Number of initial stage random starts                 100
-        Number of final stage optimizations                    20
+        Number of initial stage random starts                 500
+        Number of final stage optimizations                   100
 
 
 
@@ -485,8 +579,8 @@ TECHNICAL 11 OUTPUT
 TECHNICAL 14 OUTPUT
 
      Random Starts Specifications for the k-1 Class Analysis Model
-        Number of initial stage random starts                 100
-        Number of final stage optimizations                    20
+        Number of initial stage random starts                 500
+        Number of final stage optimizations                   100
 
      Random Starts Specification for the k-1 Class Model for Generated Data
         Number of initial stage random starts                   0
@@ -507,9 +601,9 @@ TECHNICAL 14 OUTPUT
           Successful Bootstrap Draws                            5
 
 
-     Beginning Time:  10:32:26
-        Ending Time:  10:32:32
-       Elapsed Time:  00:00:06
+     Beginning Time:  16:53:30
+        Ending Time:  16:53:51
+       Elapsed Time:  00:00:21
 
 
 
@@ -522,4 +616,4 @@ Fax: (310) 391-8971
 Web: www.StatModel.com
 Support: Support@StatModel.com
 
-Copyright (c) 1998-2022 Muthen & Muthen
+Copyright (c) 1998-2024 Muthen & Muthen

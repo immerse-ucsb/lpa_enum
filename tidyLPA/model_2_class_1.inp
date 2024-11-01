@@ -1,8 +1,7 @@
 TITLE:
 model 2 with 1 classes
 DATA:
-FILE = "data_62339a89bd516bfbbc8576cfc6c62338.dat";
- 
+FILE = "data_62339a89bd516bfbbc8576cfc6c62338.dat"; 
 VARIABLE:
 NAMES = broad_interest enjoyment instrumental_mot self_efficacy; 
  MISSING=.;
@@ -10,7 +9,7 @@ NAMES = broad_interest enjoyment instrumental_mot self_efficacy;
 
 ANALYSIS:
 TYPE = mixture;
-starts = 100, 20;
+starts = 500 100;
 MODEL:
 %c1#1%
 broad_interest (vbroad_interest1);
@@ -28,7 +27,7 @@ instrumental_mot WITH self_efficacy@0;
 
 OUTPUT:
 TECH14;
-
+sampstat residual tech11 tech14
 SAVEDATA:
 FILE IS model_2_class_1.dat;
 SAVE = cprobabilities;

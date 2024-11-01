@@ -1,0 +1,89 @@
+TITLE:
+LPA - Calculated k-Class 95% CI
+DATA:
+FILE = "C:/Users/dnajiarch/Box/IES_IMMERSE/youtube_materials/lpa_enum/mplus/
+class.dat"; 
+VARIABLE:
+NAMES = broad_interest enjoyment instrumental_mot self_efficacy; 
+ MISSING=.;
+ usevar =  broad_interest-self_efficacy;
+   classes = c1(4);
+ANALYSIS:
+estimator = ml; 
+    type = mixture;    
+    starts = 0; 
+    processors = 10;
+    optseed = 468036; ! This seed is taken from chosen model output
+    bootstrap = 1000;
+MODEL:
+ 
+    ! This is copied and pasted from the chosen model input
+  %c1#1%
+  broad_interest (vbroad_interest);
+  enjoyment (venjoyment);
+  instrumental_mot (vinstrumental_mot);
+  self_efficacy (vself_efficacy);
+
+  broad_interest WITH enjoyment (broad_interestWenjoyment);
+  broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot);
+  broad_interest WITH self_efficacy (broad_interestWself_efficacy);
+  enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot);
+  enjoyment WITH self_efficacy (enjoymentWself_efficacy);
+  instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy);
+
+  %c1#2%
+  broad_interest (vbroad_interest);
+  enjoyment (venjoyment);
+  instrumental_mot (vinstrumental_mot);
+  self_efficacy (vself_efficacy);
+
+  broad_interest WITH enjoyment (broad_interestWenjoyment);
+  broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot);
+  broad_interest WITH self_efficacy (broad_interestWself_efficacy);
+  enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot);
+  enjoyment WITH self_efficacy (enjoymentWself_efficacy);
+  instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy);
+
+  %c1#3%
+  broad_interest (vbroad_interest);
+  enjoyment (venjoyment);
+  instrumental_mot (vinstrumental_mot);
+  self_efficacy (vself_efficacy);
+
+  broad_interest WITH enjoyment (broad_interestWenjoyment);
+  broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot);
+  broad_interest WITH self_efficacy (broad_interestWself_efficacy);
+  enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot);
+  enjoyment WITH self_efficacy (enjoymentWself_efficacy);
+  instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy);
+
+  %c1#4%
+  broad_interest (vbroad_interest);
+  enjoyment (venjoyment);
+  instrumental_mot (vinstrumental_mot);
+  self_efficacy (vself_efficacy);
+
+  broad_interest WITH enjoyment (broad_interestWenjoyment);
+  broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot);
+  broad_interest WITH self_efficacy (broad_interestWself_efficacy);
+  enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot);
+  enjoyment WITH self_efficacy (enjoymentWself_efficacy);
+  instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy);
+  
+  
+  !CHANGE THIS SECTION TO YOUR CHOSEN k-CLASS MODEL
+    
+  %OVERALL%
+  [C1#1](c1);
+  [C1#2](c2);
+  [C1#3](c3);
+
+  Model Constraint:
+  New(p1 p2 p3 p4);
+  
+  p1 = exp(c1)/(1+exp(c1)+exp(c2)+exp(c3));
+  p2 = exp(c2)/(1+exp(c1)+exp(c2)+exp(c3));
+  p3 = exp(c3)/(1+exp(c1)+exp(c2)+exp(c3));  
+  p4 = 1/(1+exp(c1)+exp(c2)+exp(c3));
+OUTPUT:
+cinterval(bcbootstrap)

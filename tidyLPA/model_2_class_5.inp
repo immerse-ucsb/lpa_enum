@@ -1,0 +1,85 @@
+TITLE:
+model 2 with 5 classes
+DATA:
+FILE = "data_62339a89bd516bfbbc8576cfc6c62338.dat"; 
+VARIABLE:
+NAMES = broad_interest enjoyment instrumental_mot self_efficacy; 
+ MISSING=.;
+ CLASSES = c1(5);
+
+ANALYSIS:
+TYPE = mixture;
+starts = 500 100;
+MODEL:
+%c1#1%
+broad_interest (vbroad_interest1);
+enjoyment (venjoyment1);
+instrumental_mot (vinstrumental_mot1);
+self_efficacy (vself_efficacy1);
+
+broad_interest WITH enjoyment@0;
+broad_interest WITH instrumental_mot@0;
+broad_interest WITH self_efficacy@0;
+enjoyment WITH instrumental_mot@0;
+enjoyment WITH self_efficacy@0;
+instrumental_mot WITH self_efficacy@0;
+
+%c1#2%
+broad_interest (vbroad_interest2);
+enjoyment (venjoyment2);
+instrumental_mot (vinstrumental_mot2);
+self_efficacy (vself_efficacy2);
+
+broad_interest WITH enjoyment@0;
+broad_interest WITH instrumental_mot@0;
+broad_interest WITH self_efficacy@0;
+enjoyment WITH instrumental_mot@0;
+enjoyment WITH self_efficacy@0;
+instrumental_mot WITH self_efficacy@0;
+
+%c1#3%
+broad_interest (vbroad_interest3);
+enjoyment (venjoyment3);
+instrumental_mot (vinstrumental_mot3);
+self_efficacy (vself_efficacy3);
+
+broad_interest WITH enjoyment@0;
+broad_interest WITH instrumental_mot@0;
+broad_interest WITH self_efficacy@0;
+enjoyment WITH instrumental_mot@0;
+enjoyment WITH self_efficacy@0;
+instrumental_mot WITH self_efficacy@0;
+
+%c1#4%
+broad_interest (vbroad_interest4);
+enjoyment (venjoyment4);
+instrumental_mot (vinstrumental_mot4);
+self_efficacy (vself_efficacy4);
+
+broad_interest WITH enjoyment@0;
+broad_interest WITH instrumental_mot@0;
+broad_interest WITH self_efficacy@0;
+enjoyment WITH instrumental_mot@0;
+enjoyment WITH self_efficacy@0;
+instrumental_mot WITH self_efficacy@0;
+
+%c1#5%
+broad_interest (vbroad_interest5);
+enjoyment (venjoyment5);
+instrumental_mot (vinstrumental_mot5);
+self_efficacy (vself_efficacy5);
+
+broad_interest WITH enjoyment@0;
+broad_interest WITH instrumental_mot@0;
+broad_interest WITH self_efficacy@0;
+enjoyment WITH instrumental_mot@0;
+enjoyment WITH self_efficacy@0;
+instrumental_mot WITH self_efficacy@0;
+
+
+OUTPUT:
+TECH14;
+sampstat residual tech11 tech14
+SAVEDATA:
+FILE IS model_2_class_5.dat;
+SAVE = cprobabilities;

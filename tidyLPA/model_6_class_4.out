@@ -1,0 +1,728 @@
+Mplus VERSION 8.11
+MUTHEN & MUTHEN
+10/31/2024   4:12 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  model 6 with 4 classes
+  DATA:
+  FILE = "data_62339a89bd516bfbbc8576cfc6c62338.dat";
+  VARIABLE:
+  NAMES = broad_interest enjoyment instrumental_mot self_efficacy;
+   MISSING=.;
+   CLASSES = c1(4);
+
+  ANALYSIS:
+  TYPE = mixture;
+  starts = 500 100;
+  MODEL:
+  %c1#1%
+  broad_interest (vbroad_interest1);
+  enjoyment (venjoyment1);
+  instrumental_mot (vinstrumental_mot1);
+  self_efficacy (vself_efficacy1);
+
+  broad_interest WITH enjoyment (broad_interestWenjoyment1);
+  broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot1);
+  broad_interest WITH self_efficacy (broad_interestWself_efficacy1);
+  enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot1);
+  enjoyment WITH self_efficacy (enjoymentWself_efficacy1);
+  instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy1);
+
+  %c1#2%
+  broad_interest (vbroad_interest2);
+  enjoyment (venjoyment2);
+  instrumental_mot (vinstrumental_mot2);
+  self_efficacy (vself_efficacy2);
+
+  broad_interest WITH enjoyment (broad_interestWenjoyment2);
+  broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot2);
+  broad_interest WITH self_efficacy (broad_interestWself_efficacy2);
+  enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot2);
+  enjoyment WITH self_efficacy (enjoymentWself_efficacy2);
+  instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy2);
+
+  %c1#3%
+  broad_interest (vbroad_interest3);
+  enjoyment (venjoyment3);
+  instrumental_mot (vinstrumental_mot3);
+  self_efficacy (vself_efficacy3);
+
+  broad_interest WITH enjoyment (broad_interestWenjoyment3);
+  broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot3);
+  broad_interest WITH self_efficacy (broad_interestWself_efficacy3);
+  enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot3);
+  enjoyment WITH self_efficacy (enjoymentWself_efficacy3);
+  instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy3);
+
+  %c1#4%
+  broad_interest (vbroad_interest4);
+  enjoyment (venjoyment4);
+  instrumental_mot (vinstrumental_mot4);
+  self_efficacy (vself_efficacy4);
+
+  broad_interest WITH enjoyment (broad_interestWenjoyment4);
+  broad_interest WITH instrumental_mot (broad_interestWinstrumental_mot4);
+  broad_interest WITH self_efficacy (broad_interestWself_efficacy4);
+  enjoyment WITH instrumental_mot (enjoymentWinstrumental_mot4);
+  enjoyment WITH self_efficacy (enjoymentWself_efficacy4);
+  instrumental_mot WITH self_efficacy (instrumental_motWself_efficacy4);
+
+
+  OUTPUT:
+  TECH14;
+  sampstat residual tech11 tech14
+  SAVEDATA:
+  FILE IS model_6_class_4.dat;
+  SAVE = cprobabilities;
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in MODEL command
+  All variables are uncorrelated with all other variables within class.
+  Check that this is what is intended.
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+model 6 with 4 classes
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         488
+
+Number of dependent variables                                    4
+Number of independent variables                                  0
+Number of continuous latent variables                            0
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Continuous
+   BROAD_INTE  ENJOYMENT   INSTRUMENT  SELF_EFFIC
+
+Categorical latent variables
+   C1
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Random Starts Specifications
+  Number of initial stage random starts                        500
+  Number of final stage optimizations                          100
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+
+Input data file(s)
+  data_62339a89bd516bfbbc8576cfc6c62338.dat
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             8
+     Number of y missing data patterns           8
+     Number of u missing data patterns           0
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.977
+ ENJOYMEN       0.977         0.996
+ INSTRUME       0.971         0.977         0.982
+ SELF_EFF       0.969         0.975         0.973         0.977
+
+
+SAMPLE STATISTICS
+
+
+     ESTIMATED SAMPLE STATISTICS
+
+
+           Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                2.666         2.821         2.129         2.125
+
+
+           Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.595
+ ENJOYMEN       0.272         0.514
+ INSTRUME      -0.100        -0.171         0.560
+ SELF_EFF      -0.099        -0.145         0.095         0.414
+
+
+           Correlations
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       1.000
+ ENJOYMEN       0.492         1.000
+ INSTRUME      -0.173        -0.319         1.000
+ SELF_EFF      -0.199        -0.314         0.197         1.000
+
+
+     MAXIMUM LOG-LIKELIHOOD VALUE FOR THE UNRESTRICTED (H1) MODEL IS -1968.348
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     BROAD_INTEREST        2.666      -0.140       1.000    4.82%       2.000      2.600      2.800
+             477.000       0.595      -0.053       5.000    0.21%       3.000      3.200
+     ENJOYMENT             2.820      -0.454       1.000    3.70%       2.400      2.800      3.000
+             486.000       0.514       0.248       4.000   10.49%       3.000      3.400
+     INSTRUMENTAL_MO       2.129       0.455       1.000   14.82%       1.500      2.000      2.000
+             479.000       0.561       0.120       4.000    4.38%       2.000      2.750
+     SELF_EFFICACY         2.125       0.398       1.000    6.29%       1.625      2.000      2.000
+             477.000       0.414       0.138       4.000    1.26%       2.250      2.625
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+235 perturbed starting value run(s) did not converge in the initial stage
+optimizations.
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+           -1854.214  329127           185
+           -1855.678  741888           138
+           -1856.949  605358           321
+           -1857.755  316165           299
+           -1858.195  39136            226
+           -1860.175  462953           7
+           -1861.295  211281           292
+           -1863.449  688839           273
+           -1863.713  939709           112
+           -1864.460  609185           181
+           -1866.406  814975           129
+           -1867.001  898745           466
+           -1870.428  375590           438
+           -1871.121  798821           423
+           -1871.956  422103           62
+           -1872.692  614009           317
+           -1873.396  297518           166
+           -1873.533  227563           63
+           -1873.667  263221           447
+           -1873.755  645664           39
+           -1875.077  584397           428
+           -1876.835  939021           8
+           -1878.138  948615           140
+           -1878.518  798839           312
+           -1883.114  576596           99
+
+75 perturbed starting value run(s) did not converge or were rejected in the third stage.
+
+
+
+     WARNING:  THE BEST LOGLIKELIHOOD VALUE WAS NOT REPLICATED.  THE
+     SOLUTION MAY NOT BE TRUSTWORTHY DUE TO LOCAL MAXIMA.  INCREASE THE
+     NUMBER OF RANDOM STARTS.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       59
+
+Loglikelihood
+
+          H0 Value                       -1854.214
+          H0 Scaling Correction Factor      1.0351
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    3826.429
+          Bayesian (BIC)                  4073.657
+          Sample-Size Adjusted BIC        3886.393
+            (n* = (n + 2) / 24)
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1         32.84413          0.06730
+       2         59.82887          0.12260
+       3        285.62477          0.58530
+       4        109.70222          0.22480
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1         32.84413          0.06730
+       2         59.82887          0.12260
+       3        285.62477          0.58530
+       4        109.70222          0.22480
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1               39          0.07992
+       2               52          0.10656
+       3              306          0.62705
+       4               91          0.18648
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.702
+
+
+Average Latent Class Probabilities for Most Likely Latent Class Membership (Row)
+by Latent Class (Column)
+
+           1        2        3        4
+
+    1   0.810    0.022    0.144    0.024
+    2   0.002    0.794    0.102    0.102
+    3   0.004    0.032    0.855    0.110
+    4   0.001    0.088    0.144    0.767
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2        3        4
+
+    1   0.961    0.003    0.033    0.002
+    2   0.014    0.690    0.162    0.133
+    3   0.020    0.019    0.916    0.046
+    4   0.009    0.048    0.307    0.636
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2        3        4
+
+    1      6.011    0.285    2.645    0.000
+    2     -2.239    1.643    0.196    0.000
+    3     -0.847   -0.906    2.991    0.000
+    4     -4.299   -2.577   -0.730    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ BROAD_IN WITH
+    ENJOYMENT          0.237      0.123      1.934      0.053
+    INSTRUMENT        -0.031      0.094     -0.334      0.739
+    SELF_EFFIC         0.001      0.010      0.082      0.935
+
+ ENJOYMEN WITH
+    INSTRUMENT        -0.023      0.068     -0.333      0.739
+    SELF_EFFIC         0.000      0.008      0.047      0.962
+
+ INSTRUME WITH
+    SELF_EFFIC        -0.005      0.005     -1.069      0.285
+
+ Means
+    BROAD_INTE         3.067      0.176     17.419      0.000
+    ENJOYMENT          3.261      0.133     24.485      0.000
+    INSTRUMENT         1.609      0.103     15.665      0.000
+    SELF_EFFIC         1.032      0.019     55.584      0.000
+
+ Variances
+    BROAD_INTE         0.741      0.223      3.317      0.001
+    ENJOYMENT          0.365      0.099      3.680      0.000
+    INSTRUMENT         0.255      0.049      5.249      0.000
+    SELF_EFFIC         0.003      0.001      2.553      0.011
+
+Latent Class 2
+
+ BROAD_IN WITH
+    ENJOYMENT          0.178      0.066      2.708      0.007
+    INSTRUMENT        -0.178      0.096     -1.848      0.065
+    SELF_EFFIC        -0.062      0.061     -1.005      0.315
+
+ ENJOYMEN WITH
+    INSTRUMENT        -0.479      0.168     -2.845      0.004
+    SELF_EFFIC         0.056      0.107      0.524      0.600
+
+ INSTRUME WITH
+    SELF_EFFIC         0.089      0.098      0.907      0.364
+
+ Means
+    BROAD_INTE         1.649      0.113     14.548      0.000
+    ENJOYMENT          2.122      0.177     11.988      0.000
+    INSTRUMENT         2.592      0.229     11.336      0.000
+    SELF_EFFIC         2.530      0.133     19.037      0.000
+
+ Variances
+    BROAD_INTE         0.192      0.033      5.839      0.000
+    ENJOYMENT          0.522      0.113      4.614      0.000
+    INSTRUMENT         0.702      0.167      4.198      0.000
+    SELF_EFFIC         0.661      0.119      5.570      0.000
+
+Latent Class 3
+
+ BROAD_IN WITH
+    ENJOYMENT          0.097      0.026      3.702      0.000
+    INSTRUMENT        -0.088      0.047     -1.858      0.063
+    SELF_EFFIC        -0.020      0.029     -0.683      0.494
+
+ ENJOYMEN WITH
+    INSTRUMENT        -0.131      0.023     -5.715      0.000
+    SELF_EFFIC        -0.095      0.029     -3.306      0.001
+
+ INSTRUME WITH
+    SELF_EFFIC         0.100      0.033      2.978      0.003
+
+ Means
+    BROAD_INTE         2.911      0.059     49.062      0.000
+    ENJOYMENT          3.024      0.040     75.694      0.000
+    INSTRUMENT         1.995      0.064     31.283      0.000
+    SELF_EFFIC         2.218      0.049     44.985      0.000
+
+ Variances
+    BROAD_INTE         0.280      0.045      6.282      0.000
+    ENJOYMENT          0.271      0.029      9.519      0.000
+    INSTRUMENT         0.362      0.050      7.254      0.000
+    SELF_EFFIC         0.308      0.035      8.901      0.000
+
+Latent Class 4
+
+ BROAD_IN WITH
+    ENJOYMENT          0.165      0.086      1.906      0.057
+    INSTRUMENT         0.349      0.108      3.239      0.001
+    SELF_EFFIC        -0.087      0.056     -1.552      0.121
+
+ ENJOYMEN WITH
+    INSTRUMENT         0.233      0.096      2.428      0.015
+    SELF_EFFIC        -0.216      0.056     -3.832      0.000
+
+ INSTRUME WITH
+    SELF_EFFIC        -0.088      0.049     -1.795      0.073
+
+ Means
+    BROAD_INTE         2.456      0.112     21.836      0.000
+    ENJOYMENT          2.541      0.099     25.551      0.000
+    INSTRUMENT         2.379      0.112     21.260      0.000
+    SELF_EFFIC         1.989      0.069     28.882      0.000
+
+ Variances
+    BROAD_INTE         0.780      0.156      5.015      0.000
+    ENJOYMENT          0.676      0.109      6.184      0.000
+    INSTRUMENT         0.776      0.105      7.420      0.000
+    SELF_EFFIC         0.188      0.050      3.767      0.000
+
+Categorical Latent Variables
+
+ Means
+    C1#1              -1.206      0.297     -4.058      0.000
+    C1#2              -0.606      0.363     -1.669      0.095
+    C1#3               0.957      0.273      3.507      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.576E-05
+       (ratio of smallest to largest eigenvalue)
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 1
+
+
+           Model Estimated Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                3.067         3.261         1.609         1.032
+
+
+           Residuals for Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                0.002         0.000         0.000         0.000
+
+
+           Model Estimated Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.741
+ ENJOYMEN       0.237         0.365
+ INSTRUME      -0.031        -0.023         0.255
+ SELF_EFF       0.001         0.000        -0.005         0.003
+
+
+           Residuals for Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.000
+ ENJOYMEN       0.013         0.000
+ INSTRUME       0.014         0.017         0.000
+ SELF_EFF       0.006         0.004         0.005         0.000
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 2
+
+
+           Model Estimated Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                1.649         2.122         2.592         2.530
+
+
+           Residuals for Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                0.001        -0.001         0.014        -0.001
+
+
+           Model Estimated Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.192
+ ENJOYMEN       0.178         0.522
+ INSTRUME      -0.178        -0.479         0.702
+ SELF_EFF      -0.062         0.056         0.089         0.661
+
+
+           Residuals for Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.000
+ ENJOYMEN       0.005         0.000
+ INSTRUME      -0.011        -0.033         0.000
+ SELF_EFF      -0.012        -0.017         0.009         0.000
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 3
+
+
+           Model Estimated Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                2.911         3.024         1.995         2.218
+
+
+           Residuals for Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                0.000        -0.001        -0.002         0.001
+
+
+           Model Estimated Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.280
+ ENJOYMEN       0.097         0.271
+ INSTRUME      -0.088        -0.131         0.362
+ SELF_EFF      -0.020        -0.095         0.100         0.308
+
+
+           Residuals for Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.000
+ ENJOYMEN       0.007         0.000
+ INSTRUME       0.021         0.012         0.000
+ SELF_EFF       0.014         0.009         0.011         0.000
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED) FOR CLASS 4
+
+
+           Model Estimated Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                2.456         2.541         2.379         1.989
+
+
+           Residuals for Means
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+                0.001        -0.001         0.000        -0.003
+
+
+           Model Estimated Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.780
+ ENJOYMEN       0.165         0.676
+ INSTRUME       0.349         0.233         0.776
+ SELF_EFF      -0.087        -0.216        -0.088         0.188
+
+
+           Residuals for Covariances
+              BROAD_IN      ENJOYMEN      INSTRUME      SELF_EFF
+              ________      ________      ________      ________
+ BROAD_IN       0.001
+ ENJOYMEN       0.002        -0.001
+ INSTRUME       0.017         0.004         0.002
+ SELF_EFF       0.030         0.013         0.014         0.000
+
+
+TECHNICAL 11 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 500
+        Number of final stage optimizations                   100
+
+
+
+     VUONG-LO-MENDELL-RUBIN LIKELIHOOD RATIO TEST FOR 3 (H0) VERSUS 4 CLASSES
+
+          H0 Loglikelihood Value                        -1879.009
+          2 Times the Loglikelihood Difference             49.590
+          Difference in the Number of Parameters               15
+          Mean                                           -246.336
+          Standard Deviation                              378.652
+          P-Value                                          0.0429
+
+     LO-MENDELL-RUBIN ADJUSTED LRT TEST
+
+          Value                                            49.062
+          P-Value                                          0.0438
+
+
+TECHNICAL 14 OUTPUT
+
+     Random Starts Specifications for the k-1 Class Analysis Model
+        Number of initial stage random starts                 500
+        Number of final stage optimizations                   100
+
+     Random Starts Specification for the k-1 Class Model for Generated Data
+        Number of initial stage random starts                   0
+        Number of final stage optimizations for the
+           initial stage random starts                          0
+     Random Starts Specification for the k Class Model for Generated Data
+        Number of initial stage random starts                  40
+        Number of final stage optimizations                     8
+     Number of bootstrap draws requested                   Varies
+
+
+     PARAMETRIC BOOTSTRAPPED LIKELIHOOD RATIO TEST FOR 3 (H0) VERSUS 4 CLASSES
+
+          H0 Loglikelihood Value                        -1879.009
+          2 Times the Loglikelihood Difference             49.590
+          Difference in the Number of Parameters               15
+          Approximate P-Value                              0.0779
+          Successful Bootstrap Draws                           77
+
+     WARNING:  OF THE 77 BOOTSTRAP DRAWS, 72 DRAWS HAD BOTH A SMALLER LRT VALUE THAN THE
+     OBSERVED LRT VALUE AND NOT A REPLICATED BEST LOGLIKELIHOOD VALUE FOR THE 4-CLASS MODEL.
+     THIS MEANS THAT THE P-VALUE MAY NOT BE TRUSTWORTHY DUE TO LOCAL MAXIMA.
+     INCREASE THE NUMBER OF RANDOM STARTS USING THE LRTSTARTS OPTION.
+
+
+     WARNING:  2 OUT OF 79 BOOTSTRAP DRAWS DID NOT CONVERGE.
+     INCREASE THE NUMBER OF RANDOM STARTS USING THE LRTSTARTS OPTION.
+
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    model_6_class_4.dat
+
+  Order and format of variables
+
+    BROAD_IN       F10.3
+    ENJOYMEN       F10.3
+    INSTRUME       F10.3
+    SELF_EFF       F10.3
+    CPROB1         F10.3
+    CPROB2         F10.3
+    CPROB3         F10.3
+    CPROB4         F10.3
+    C1             F10.3
+
+  Save file format
+    9F10.3
+
+  Save file record length    10000
+
+  Save missing symbol        *
+
+
+     Beginning Time:  16:12:52
+        Ending Time:  16:14:47
+       Elapsed Time:  00:01:55
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2024 Muthen & Muthen
